@@ -1,0 +1,39 @@
+* todo stuff
+create a TODO: M-(shift) RET
+mark a TODO as DONE: C-c C-t
+the global TODO list (agenda):  C-c a t 
+'t' marks an item as DONE, RET jumps to the 
+source file where the TODO is located.
+
+insert a timestamp with C-c . (that's a period)
+
+scheduling a task w/ agenda:
+move cursor to the line after the TODO item to be scheduled
+run org-schedule : C-c C-s 
+
+org-agenda : C-c a a (displays this weeks' scheduled items)
+'l' (lowercase L) turns on log display
+
+* links
+[[http://www.google.com][google]]
+web link: [[link][description] ] (no space)
+org-open-at-point : C-c C-o
+
+[[file:~/notes/test.org::*fruit][a file]]
+file link: open the file to be linked to in a new buffer 
+press C-c l to call org-store-link
+go to the file you want the link to appear in 
+press C-c C-l 
+org-open-at-point : C-c C-o 
+
+* org file manipulation 
+S-TAB collapses everything
+TAB toggles
+
+* tables
+
+  [[http://orgmode.org/org.html#Tables][manual]]
+
+
+
+  
