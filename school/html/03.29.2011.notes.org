@@ -1,0 +1,190 @@
+* stopping meta tag spam
+  http://www.xml-sitemap.com - google specific
+  http://www.ibm.com/developerworks/xml/library/x-tipsearcheng.html
+  http://online-seo-information.blogspot.com/2009/01/google-webmaster-tools.html
+  
+
+  
+
+
+* tutorial3
+** cascading style sheets
+   maintained by W3C
+   other versions...we'll be using css1 and css2
+*** css2
+    positioning
+    visual formatting
+    media types
+    interfaces
+*** css3
+    in development
+    usere interfaces
+    accessibility
+    columnar layout
+    internation featuers
+    mobile devies
+    scalable vector graphics
+*** ways to apply style
+**** inline styles
+     <element style="style1: value1; style2: value2; style3: value 3">
+**** embedded
+     <style type="text/css" >
+
+     h2, h3 {color: green}
+     body {color: red}
+     address {text-align: center}
+
+     </style>
+**** external style    
+     applies to the entire site...can be linked to any page in the site.
+
+     comment /* comment */
+
+     link element:
+     <link href="styles.css" rel="stylesheet" type="text/css" />
+
+**** precedence (highest > lowest)
+     user-defined styles
+     inline styles
+     embedded style sheet (external actually has higher precedence, unless embedded is declared AFTER external)
+     external style sheet
+     browser's internal style sheet
+
+**** style inheritance
+     body { color: blue}
+     p {color: red}
+     in the above example, body element is the parent element 
+***** applying style to specific id
+      #id {style: rule}
+      where id is the value of the element's id attribute and style rule stands for the styles applied to that specific id.
+
+
+*** working w/ color
+    apply by color value or color name
+    combo of red/green/blue
+    more than 16.7 million distinct colors
+     
+    rgb(0,0,0);
+
+    hex value:
+    000000; (black)
+    FF0000; (red)
+    FFFFFF; (white)
+
+**** background
+     h2,h3 {color: white; background-color: rgb(0,154,0)}
+
+
+*** fonts
+**** font family
+     a specific font is a font such as arial or garamond, the font is installed on a user's computer
+     a generic font refers to the font's general appearance
+
+     h2,h3 {font-family: Arial, Helvetica, 'Trebuchet MS', sans-serif}
+     multiple word fonts must be in single quotes
+
+**** font size
+***** Em unit
+      2em
+***** percentages
+      50%
+***** relative keywords
+	  larger
+	  smaller
+     
+    
+    
+
+***** absolute value
+***** example
+      font-size: 4pc (pica)
+      font-size: 4pt (points)
+      font-size: 2em (em unit)
+      font-size: 50% (percentage)
+
+**** font features
+     pg 151
+     specify font styles (normal, italic, oblique)
+     font-style: type
+     
+     control font weight:
+     font-weight: value (100,200, etc, bold)
+
+     change appearance of text:
+     text-decoration: type (underline, overline, blink, line-through)
+
+     text-transform: value (uppercase, lowercase, etc)
+**** combine (don't actually use this)
+     font: font-style font-variant font-weight font-size/line-height font-family
+     
+     
+*** spacing and indentation
+**** Kerning is the amount of space between characters
+	letter-spacing: value
+**** tracking is the amount of space between words and phrases
+     word-spacing: value
+**** leading is the space between lines of text
+     line-height:length
+
+    
+
+
+*** images
+**** gif (graphics intercange format)
+     compatible with virtually all browsers
+     gif files are limited to displaying 256 colors
+     often used for graphics requiring fewer colors
+
+     transparent color is sa color that is not displayed when the image is viewed in an application
+     a splash screen is a web page containing 
+**** jpeg
+     supports up to 16.7 million colors
+     often used for photographs and other images that cover a wide spectrum of color
+     
+**** png
+     display more colors than gif's
+     png's do allow transparent colors...not all browsers support this feature
+
+**** setting image size (done in html for now)
+     default: display image at its saved size
+
+     specify different size:
+     width="value" height="value" (value in pixels)
+     <img src="url" alt="whatever" width="value" height="value" />
+**** background image options
+
+     background-image: url(url)
+     background-repeat: type (repeat-x, repeat-y, repeat, no-repeat)
+
+**** float element (fills in space around the floated element)
+     float: position (right, left, etc)
+     
+     #promoimage {float: right}
+
+     clear: position (none, left, right, both)
+
+*** box model
+**** margin
+     margin-top: length
+     margin-right: length
+     margin-bottom:: length
+     margin-left:: length
+
+     margin: top right bottom left
+**** border
+     border-[top,right,bottom,left]-width: width
+     border-[top,right,bottom,left]-color: color
+     border-[top,right,bottom,left]-style: (solid, dashed, dotted, double, outset, inset, ridge, groove, none)
+     border: value
+**** padding
+     padding: value
+     padding-left
+     padding-right
+
+**** content
+
+**** float a div tag
+     #idElement {
+     width: 50em (changes width of entire element)
+     float: left (shifts element)
+     

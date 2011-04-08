@@ -1,0 +1,112 @@
+* review
+
+** create table statement 
+   google for syntax/options
+
+   create table [tablename](
+   [column name] [dataype] [constraint],
+   ...,
+   [primary key] (column name)
+   [foreign key] (column name) [references] [another table name] (column name)
+   [index] (index name) (column name,column name2, column name3)
+   );
+*** constraints 
+    not null
+    autoincrement 
+    default [value]
+** alter table statement 
+   google for syntax/options
+*** possible alterations
+**** drop 
+     [column] [column name]
+     [index|key] [index name]
+     [primary key]
+     [foreign key] [fk_symbol]
+     [table] [table name]
+**** rename
+     
+**** add 
+     [column] [column name] [column definition]
+     [primary key] 
+**** modify
+**** change
+    
+** delete statement
+   delete from [table name] where [column name="value"] limit [number]
+** update statement 
+   update [table name] set [column name = "value" ] where [column name = "value"] limit [number]
+** primary key
+   primary key (column name)
+   index [index name] (column name)
+** foreign key
+   default engine does not suport foreign key
+
+   [foreign key] (column name) [references] [another table name] (column name)
+
+   when dealing w/ a 1:M relationship, the PK of the 1 table becomes FK of the M table
+** referential integrity
+   governs value of FK
+
+   CAN be null
+   if not null, must match PK of the 1 table
+** entity integrity
+   governs value of PK
+   
+   PK CANNOT BE NULL
+   must be unique
+
+
+
+
+* engine type/table type
+**  oldest type of table/engine is MyISAM
+    does not enforce referential integrity
+    very fast/simple
+** InnoDB
+   default after mysql version 4.1.5 (not really)
+   enforces transaction safe tables
+   enforce referential integrity
+   more sophisticated 
+** Memory
+   very fast, but volatile. 
+   exists only in memory, NOT on disk
+   goes away when mysql is stopped
+   restart mysql, must relaod memory table
+
+
+
+** sql commands
+   show engines; 
+   show engines\g; more verbose version
+
+   show table status
+   
+   show columns from [table name]
+
+   insert into [table name] values ([value 1,value 2,value 3...]);
+    
+   alter table [table name] [engine=engine]; to change the engine for a table...InnoDB
+** terms
+*** DDL
+    Data Definition Language
+*** DML
+    Data Manipulation Language
+
+
+* project 1...email soft copy to ckoon@coleman.edu
+
+** part 1
+   use chen's model to draw out 4 entities that correspond to the four bullets
+   identify identifier, multi-value attributes 
+   relationships, weak/strong, entities, etc.
+** part 2
+   map entities in part 1 to tables 
+   draw tables in crow's foot model
+** part 3
+   Tabulate tables in part 2 to 0NF
+   1NF (no repeating groups, PK identified)
+   2NF (1NF, no partial dependency)
+   3NF (2NF, no transitiv dependecy)
+** part 4
+   draw 3NF using crow's foot
+

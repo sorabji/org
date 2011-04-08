@@ -1,0 +1,112 @@
+* Student
+** name (composite)
+*** first name
+*** last name
+*** M.I.
+** address (composite)
+*** street address
+*** city
+*** state
+*** zip
+** phone number (multi-value)
+** class (freshman, sophomore, etc)
+** D.O.B.
+** PIN (Primary Key)
+** advisor
+1NF
+student table
+| first | last  | m.i. | street | city | state | zip | phone | class | d.o.b. | PIN(pk) | advisor |
+|-------+-------+------+--------+------+-------+-----+-------+-------+--------+---------+---------|
+| john  | smith | a.   | happy  | bl   | ca    | 838 |   123 | fresh |  1.5.6 |    1234 | frank   |
+
+2NF
+student table
+| first | last  | m.i. | street | city | state | zip | class | d.o.b. | PIN(pk) | advisor |
+|-------+-------+------+--------+------+-------+-----+-------+--------+---------+---------|
+| john  | smith | a.   | happy  | bl   | ca    | 838 | fresh | 1.5.6  | 1234    | frank   |
+
+student phone table
+| PIN(partial key) | phone(partial key) |
+|------------------+--------------------|
+| 1234             | 345-2346           |
+| 1234             | 654-3253           | 
+
+3NF same as 2NF (no transitive depencies found)
+  
+* Course
+** course call number (com340, etc)
+** course name
+** credits
+** location 
+** duration
+** max enrollment
+** instructor
+** term offered
+
+1NF
+course table
+| #(part k) | name | cred | loc(part k) | dur | maxenroll | instructor | termoffered |
+|-----------+------+------+-------------+-----+-----------+------------+-------------|
+| com23     | some |    3 | TTH 112     | 2hr |        45 | bob        | spring      |
+| com23     | some |    3 | MWF 115     | 2hf |        45 | bob        | spring      |
+
+2NF
+course detail table
+| #(pk) | name | cred | dur | maxenroll | termoffered |
+|-------+------+------+-----+-----------+-------------|
+| com23 | some |    3 | 2hr |        45 | spring      |
+
+course location/instructor table
+| #(part k) | loc(part k) | instructor |
+|-----------+-------------+------------|
+| com23     | TTH 1-3     | smith      |
+| com23     | MWF 3-5     | john       |
+
+3NF same as 2NF (no transitive depencies found)
+
+* Instructor
+** name (composite)
+*** first name
+*** last name
+*** M.I.
+** office location
+** phone number (multi-value)
+** rank (professor, instructor, etc)
+** PIN (Primary Key)
+
+1NF
+instructor table
+| PIN(pk) | first | last  | m.i. | officeLoc |    phone | rank |
+|---------+-------+-------+------+-----------+----------+------|
+|     234 | bob   | smith | s.   | south     | 123-4567 | prof |
+|     234 | bob   | smith | s.   | south     | 123-9876 | prof | 
+
+2NF
+instructor table
+| PIN(pk) | first | last  | m.i. | officLoc | rank |
+|---------+-------+-------+------+----------+------|
+|     234 | bob   | smith | s.   | south    | prof |
+
+instructor phone table
+| PIN(part k) | phone(part k) |
+|-------------+---------------|
+|         234 |      123-4567 |
+|         234 |      123-9876 |
+  
+3NF same as 2NF (no transitive depencies found)
+
+* Enrollment/Grade
+** student PIN (partial key)
+** course call number (partial key)
+** grade
+
+1NF 
+enrollment/grade table
+| student PIN(part k) | course#(part k) | grade |
+|---------------------+-----------------+-------|
+|                 123 | com23           | B     |
+|                 123 | com280          | A     | 
+
+2NF same as 1NF (no partial dependencies found)
+3NF same as 2NF (no transitive dependencies found)  
+

@@ -1,0 +1,200 @@
+* review
+** select statement options
+   select [columns, *] as "alternate column name" from [tableName] where 
+   [columnName [comparison operators, LIKE] [AND, OR]] ORDER BY COLUMN [desc,asc] LIMIT [number];
+   AND has precedence
+   select * from ab_table where type in("programming","mystery","etc."); alternative to consecutive OR
+   select * from ab_table where price >= 10 AND price <= 20;
+   OR
+   select * from ab_table where price BETWEEN 10 and 20; between is only for inclusive bounding
+   
+
+*** like
+    where name like " "
+    _ ofset ex: "_x" matches ukele
+    % any number of characters
+    binary: case sensitive search
+
+** group functions
+*** count
+    count [*, column name]
+    select count(*, column name) from [table] where... (returns count of matching rows)
+*** max
+    select max(column name)
+*** min
+    select min(column name)
+*** avg
+*** sum
+* today's notes
+average price of all books, by type
+
+select type, avg(price) from ab_title group by type
+
+** joining tables
+*** ab database
+ab_author
+| AuthorID(pk) | LastName | FirstName |
+|--------------+----------+-----------|
+|              |          |           |
+
+ab_wrote
+| AuthorID(fk) | Isbn(pk) | Sequence |
+|--------------+----------+----------|
+|              |          |          |
+
+ab_customer
+| CustID(pk) | LastName | FirstName | Address | City | State | Zip | Phone | Email | CardType | CardNumber | CardExpire |
+|------------+----------+-----------+---------+------+-------+-----+-------+-------+----------+------------+------------|
+|            |          |           |         |      |       |     |       |       |          |            |            | 
+
+ab_orders
+| OrderId(pk) | OrderDate | CustId(fk) | CardType | CardNumber | CardExpire |
+|-------------+-----------+------------+----------+------------+------------|
+|             |           |            |          |            |            | 
+
+ab_orderDetail
+| OrderId(fk) | Isbn(fk) | Qty | Price |
+|-------------+----------+-----+-------|
+|             |          |     |       | 
+
+ab_title
+| Isbn(pk) | Title | PubId(fk) | Type(fk) | QtyOnHand | Cost | SellingPrice |
+|----------+-------+-----------+----------+-----------+------+--------------|
+|          |       |           |          |           |      |              |
+
+ab_publisher
+| PubId(pk) | Name | Address | City | State | zip | Contact |
+|-----------+------+---------+------+-------+-----+---------|
+|           |      |         |      |       |     |         | 
+
+ab_type
+| type |
+|------|
+|      |
+
+** examples
+
+deprecated:
+select OrderID, OrderDate, ab_order.CustID, FirstName,LastName,Address
+from ab_orders, ab_customer
+where ab_orders.CustId = ab_customer.CustId
+
+select OrderId,OrderDate,Isbn
+from ab_orders, ab_orderdetail
+where ab_orders.OrderId = ab_orderdetails.OrderId
+
+select ab_author.AuthorId, Isbn
+from ab_author, ab_wrote
+where ab_author.AuthorId = ab_wrote.AuthorId
+
+select ab_author.AuthorId, FirstName,LastName, ab_wrote.Isbn, Title
+from ab_author, ab_wrote,ab_title
+where ab_author.AuthorId = ab_wrote.AuthorId AND ab_wrote.Isbn = ab_title.Isbn
+
+non deprecated:
+select ab_author.AuthorId, firstName, LastName, ab_wrote.Isbn
+from ab_author
+inner join ab_wrote
+on ab_author.AuthorId = ab_wrote.AuthorId
+
+
+
+
+
+
+
+** different types of joining
+
+   inner join only shows matching rows
+
+| id | first | last |
+|----+-------+------|
+| 1  |       |      |
+| 2  |       |      |
+| 3  |       |      | 
+
+| ISBN | id |
+|------+----|
+| A    |  1 |
+| B    |  1 |
+| C    |  2 |
+| D    |  4 |
+
+
+inner join only shows results that match in both tables
+inner join result:
+| id | isbn |
+|----+------|
+| 1  | A    |
+| 1  | B    |
+| 2  | C    | 
+id 3 is not shown
+
+left outer join (show everything in the left table, regardless if there's a match)
+
+left outer join result:
+| id | isbn |
+|----+------|
+| 1  | A    |
+| 1  | B    |
+| 2  | C    |
+| 3  | NULL | 
+
+right outer join (show everything in the right table, regardless if there's a match)
+
+right outer join result:
+|   id | isbn |
+|------+------|
+|    1 | A    |
+|    1 | B    |
+|    2 | C    |
+| NULL | D    |
+
+
+  
+
+
+** examples
+customer
+| custid | name |
+|--------+------|
+| 1      |      |
+| 2      |      |
+| 3      |      |
+
+
+order
+| orderid | custid |
+|---------+--------|
+| A       | 1      |
+| B       | 2      |
+| C       | 4      |
+| D       | 5      |
+
+
+select customer.custid, orderid
+from customer
+left outer join order
+on customer.custid = order.custid
+
+result:
+| custid | orderid |
+|--------+---------|
+| 1      | A       |
+| 2      | B       |
+| 3      | NULL    | 
+
+select customer.custid, orderid
+from customer
+right outer join order
+on customer.custid = order.custid  
+
+| custid | orderid |
+|--------+---------|
+| 1      | A       |
+| 2      | B       |
+| NULL   | C       |
+| NULL   | D       | 
+
+  
+

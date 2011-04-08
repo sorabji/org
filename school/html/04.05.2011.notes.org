@@ -1,0 +1,74 @@
+* applying to specific attribute css
+
+div[id^="pull"] {color: black}
+sets style for element that matches id...css funky regex
+
+* selection based on IE version
+<!-- [if condition IE version]>
+html code
+<![endif]-->
+* specify list style
+list-style-type: type
+type= disc, circle, square, decimal, decimal-leading-zero,lower-roman,upper-roman,lower-alpha,upper-alpha,none
+list-style-image: url(url.jpg)
+list-style-position: inside,outside
+
+ol {list-style-type: decimal}
+ol ol {list-style-type: upper-roman}
+ol ol ol {list-style-type: decimal-leading-zero}
+ol ol ol ol {list-style-type: upper-alpha}
+
+* working with classes
+the class attribute is used when you want to identify elements that share a common characteristic.
+<elem class="class"> </elem>
+
+.class {something: else}
+accessed w/ . operator
+
+** pseudo classes
+pseudo-class...classification of an element based on it's current status, position, or use in the document 
+selector:pseudo-class {styles}
+
+pg 217
+#link a:link{text-decoration: none; color: red}
+a:visited
+a:hover
+** pseudo elements
+abstracted from what we know of an element's content, use, or position in the document.
+selector:pseudo-element{styles}
+
+[id/element]:[pseudo element] {styles}
+#firstp:first-line {font-variant: small-caps}
+#firstp:first-letter {font-size: 400%; float: left; line-height: 0.8}
+
+h2:before {content: "<"}
+
+* positioning objects w/ css
+div containers for each note
+** style sheet:
+   .notes {border:3px inset rgb(215,215,215)}
+   #note1 {position: absolute; left: 600px; top:120px}
+   position: {absolute, relative, fixed, static}
+
+** overflow/clipping
+define how browser handles a situation where content overflows the space allotted to the object
+overflow: visible, hidden, scroll, auto
+
+overflow for text, clipping for images
+
+#sample_image {clip: rect(10,175,125,175)}
+
+** stacking
+z-index:1;
+
+* working w/ different media
+<style type="text/css" media="type">
+...
+</style>
+
+or:
+<link href="url" type="text.css" media="type".../>
+
+@media screen {body {font-size:1} h1{font-family:arial} }
+@media print { { } } 
+etc.
