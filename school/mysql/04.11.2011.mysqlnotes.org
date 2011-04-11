@@ -1,0 +1,56 @@
+* subqueries/nested query
+  -any 
+     SELECT * FROM ab_title WHERE PubId <= ANY (SELECT PubId FROM ab_publisher)
+     any is the same as IN
+  -all
+     SELECT * FROM ab_title WHERE PubId = ALL (SELECT PubId FROM ab_publisher)
+     all is the same as NOT IN
+  -exists
+     SELECT * FROM ab_wrote WHERE EXISTS (SELECT * FROM ab_author WHERE AuthorId = 3)
+     as long as inner query returns a result, outer query will run
+** correlated subquery
+   find all authors that have written books
+   + SELECT AuthorId FROM ab_wrote WHERE EXISTS
+   + (SELECT * FROM ab_wrote WHERE ab_author.AuthorId = ab_wrote.AuthorId);
+      
+   
+** 
+   original:
+
+   1)select MIN(SellingPrice) from ab_title;
+   2)select * from ab_title where SellingPrice=4.95;
+
+   nested:
+   1)select * from ab_title where SellingPrice=(select MIN(SellingPrice) from ab_title);
+
+   inner query must return column that outer query tests on
+   select * from ab_title where *SellingPrice* = (select MIN(*SellingPrice*) from ab_title);
+
+** Find all orders that contain book w/ isbn=0688010377 (show orderid and orderdate)
+   
+   solution:
+   
+   SELECT OrderId, OrderDate FROM ab_orders WHERE OrderId IN
+   (SELECT OrderId FROM ab_orderdetail WHERE Isbn=0688010377)
+** Find Isbn, Title of most expensive books
+   SELECT Isbn, Title FROM ab_title where SellingPrice IN ;; or use = b/c it's an aggregate function
+   (SELECT MAX(SellingPrice) from ab_title)
+   
+** Isbn, Title of books that sell above average price
+   select Isbn, Title from ab_title where SellingPrice >=
+   (select avg(SellingPrice) from ab_title)
+
+** Isbn, Title QtyOnHand of books that have the most qty
+   select Title from ab_title where QtyOnHand=
+   (select max(QtyOnHand) from ab_title)
+
+** find publishers (pubID & name) that publish either "programming" or "mystery" books
+   SELECT PubId, Name FROM ab_publisher WHERE PubId IN 
+   (SELECT Type FROM ab_title WHERE Type IN ("Programming","Mystery"))
+   
+** find all authors (authorId, first, last) that have written books
+   SELECT AuthorId, FirstName, Lastname FROM ab_author WHERE AuthorId IN
+   (SELECT DISTINCT(AuthorId) FROM ab_wrote)
+    
+    
+    

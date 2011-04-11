@@ -1,0 +1,7 @@
+
+
+* TODO version control emacs
+  - [ ] symlink ~/.emacs.d/ to a git branch
+  - [ ] same for ~/.emacs
+  - [ ] org-mode git
+

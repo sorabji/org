@@ -1,0 +1,32 @@
+#+STARTUP: showall
+
+* welcome to org-mode
+ 
+   welcome, and thanks for trying out org-mode. making outlines in
+   org is very simple. it is just text...start typing
+* working with lists
+** moving around in our outline					    :project:
+** moving around headlines
+** this is a headline. it starts with one or more starts
+   :PROPERTIES:
+   :END:
+   a heading has one star, sub-heading two, etc.
+- something here
+- [ ] 
+- [ ] 
+- [ ] 
+      - something here
+	and something else
+      - something else
+      - here we are
+      - 
+- something else
+- [ ] 
+  + this
+*** there
+    blah blah blah
+    :SOMETHING:
+    here we are
+    :END:
+    after
+
