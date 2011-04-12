@@ -1,0 +1,905 @@
+* folders
+
+`SPC'
+`RET'
+     Enter to the summary mode of the folder at the current cursor
+     point.  With prefix argument, enter the sticky summary.  If the
+     cursor is on the top of folder group line, the folder group is
+     opened or closed.  When the cursor is on the access group and this
+     command is called with prefix argument, folder children list is
+     updated to the newest one.  (Children list is updated recursively
+     if the access folder has hierarchical structure.)
+     (`wl-folder-jump-to-current-entity')
+
+`M-RET'
+     Folder children list of the access group at the current cursor
+     point is updated to the newest one.  (Children list is updated
+     recursively if the access folder has hierarchical structure.)
+     (`wl-folder-update-recursive-current-entity')
+
+`w'
+     Create a new draft message.  (`wl-draft')
+
+`W'
+     If the current cursor point is on the NNTP folder, create a new
+     draft message which already has `Newsgroups:' field.  If the
+     current cursor point is on the folder for mailing list (refile
+     destination), create a new draft message which already has `To:'
+     field with guessed mailing list address (If
+     `wl-subscribed-mailing-list' is valid list).
+     (`wl-folder-write-current-folder')
+
+C-c C-o
+     Move to the draft buffer if available.  If multiple draft buffer
+     exists, moved to one after another.  If prefix argument is
+     specified, load draft folder's message to the draft buffer and jump
+     to it.  (`wl-jump-to-draft-buffer')
+
+`s'
+     Update new and unread number information of the folder at the
+     current cursor point.  (`wl-folder-check-current-entity')
+
+`S'
+     Update summary information of the folder at the current cursor
+     point.  (`wl-folder-sync-current-entity')
+
+`r s'
+     Update new and unread number information of the folders in the
+     currently selected region.  (`wl-folder-check-region')
+
+`r S'
+     Update summary information of the folders in the currently selected
+     region.  (`wl-folder-sync-region')
+
+`Z'
+     Sync up address book status with `~/.addresses''s content.
+     (`wl-status-update')
+
+`P'
+     Jump cursor to the folder which have unread messages on the upward
+     from current cursor point.  (`wl-folder-prev-unread')
+
+`N'
+     Jump cursor to the folder which have unread messages on the
+     downward from current cursor point.  (`wl-folder-next-unread')
+
+`p'
+     Move cursor to the folder on the previous line.
+     (`wl-folder-prev-entity')
+
+`n'
+     Move cursor to the folder on the next line.
+     (`wl-folder-next-entity')
+
+`J'
+     Jump to the folder specified by the user input.
+     (`wl-folder-jump-folder')
+
+`I'
+     Prefetch new messages of the folder at the current cursor point by
+     `wl-summary-incorporate'.  If the cursor is on the folder group, it
+     is executed recursively.  (`wl-folder-prefetch-current-entity')
+
+`c'
+     Mark all unread messages of the folder at the current cursor point
+     as read.  If the cursor is on the folder group, it is executed
+     recursively.  (`wl-folder-mark-as-read-all-current-entity')
+
+`f'
+     Enter summary mode of the first unread folder.
+     (`wl-folder-goto-first-unread-folder')
+
+`E'
+     Empty trash.  (`wl-folder-empty-trash')
+
+`F'
+     Flush queue.  (`wl-folder-flush-queue')
+
+`V'
+     Move to the virtual folder (filter folder) with the condition
+     specified.  (`wl-folder-virtual')
+
+`?'
+     Search the folders with the condition specified.
+     (`wl-folder-pick')
+
+`o'
+     All unread folder is opened.  (`wl-folder-open-all-unread-folder')
+
+`x'
+     Execute marks in summary buffers. *Note Sticky Summary::.
+     (`wl-execute-temp-marks')
+
+`/'
+     Folder group is opened/closed.  (`wl-folder-open-close')
+
+`['
+     All folder group is opened.  (`wl-folder-open-all')
+
+`]'
+     All folder group is closed.  (`wl-folder-close-all')
+
+`q'
+     Quit Wanderlust.  (`wl-exit')
+
+`z'
+     Suspend Wanderlust.  (`wl-folder-suspend')
+
+`M-s'
+     Save current folder status.  (`wl-save')
+
+`M-t'
+     Toggle Wanderlust's offline/online status.  (`wl-toggle-plugged')
+
+`C-t'
+     Start Wanderlust's plug-status manager.  (`wl-plugged-change')
+
+* folder editor
+
+`m a'
+     Add specified folder to your folder list . If you enter
+     non-existent folder, create it after confirmation.
+     (`wl-fldmgr-add')
+
+`+'
+`m g'
+     Create a folder group.  (`wl-fldmgr-make-group')
+
+`m A'
+     Create an access group.  (`wl-fldmgr-make-access-group')
+
+`m d'
+     Delete folder itself and msgdb.  If the folder itself cannot be
+     deleted like NNTP folder, only msgdb is deleted.
+     (`wl-fldmgr-delete')
+
+`R'
+`m R'
+     Change the name of folder or folder group.  msgdb's path is also
+     changed.  (`wl-fldmgr-rename')
+
+`*'
+`m m'
+     Create a multi folders in the cutlist (cut, copied folders).
+     (`wl-fldmgr-make-multi')
+
+`|'
+`m f'
+     Create a filter folder. (Put a filter on the folder).
+     (`wl-fldmgr-make-filter')
+
+`M-c'
+`m c'
+     Copy folder (it is not available on folder group).
+     (`wl-fldmgr-copy')
+
+`M-w'
+`m W'
+     Copy folders in the specified region.  (`wl-fldmgr-copy-region')
+
+`C-k'
+`m k'
+     Cut folder. Folder itself is not deleted.  (`wl-fldmgr-cut')
+
+`C-w'
+`m C-w'
+     Cut folders in the specified region.  (`wl-fldmgr-cut-region')
+
+`C-y'
+`m y'
+     Paste folders that are copied or cut (folders in the cut-list).
+     (`wl-fldmgr-yank')
+
+`m p'
+     Put nickname on the folder.  (`wl-fldmgr-set-petname')
+
+`m q'
+     Clear the cut-list. (cut, copied folder information is cleared, you
+     cannot paste after this) (`wl-fldmgr-clear-cut-entity-list')
+
+`m s'
+     Sort folders in the current folder group.  (`wl-fldmgr-sort')
+
+`m C-s'
+     Save current folder view to the `wl-folders-file'.
+     (`wl-fldmgr-save')
+
+[Following commands are only available on the access groups]
+
+`u'
+`m u'
+     Set the visibility of folder (subscribe/unsubscribe).
+     (`wl-fldmgr-unsubscribe')
+
+`U'
+`r u'
+     Set the visibility of the folders (subscribe/unsubscribe) in the
+     specified region.  (`wl-fldmgr-unsubscribe-region')
+
+`l'
+`m l'
+     List folders that are currently available.
+     (`wl-fldmgr-access-display-normal')
+
+`L'
+`m L'
+     List all folders regardless of the subscription status.
+     (`wl-fldmgr-access-display-all')
+* summary
+** temporary marks
+There are seven temporary marks, `*', `d', `D', `o', `O', `i' and `~'.
+Temporary marks indicates message operations.
+
+`*'
+     Target mark.  You can execute a command on the all messages that
+     have `*' mark, with the key bindings which begins with `m'.
+
+`d'
+     The mark to dispose. You can put `d' by typing `d' key.
+
+`D'
+     The mark to force delete. You can put `D' by typing `D' key.
+
+`o'
+     The mark to refile.  After you type `o' key, prompt appears to
+     input refile destination.  Your answer is printed in the summary
+     line.
+
+`O'
+     The mark to refile.  You can put this mark by typing `O' key.  The
+     difference between this mark and refile mark is, this mark does not
+     delete the message while latter does.
+
+`i'
+     The mark to prefetch reserved.  You can put this mark by typing `i'
+     key.
+
+`~'
+     The mark to resend reserved.  After you type `~' key, prompt
+     appears to input address to resend.  Your answer is printed in the
+     summary line.
+
+`x' key executes action for temporary marks, respectively.
+
+** persistent marks
+There are ten persistent marks, `!', `N', `n', `U',
+`u', `A', `a', `F', `f' and `$'.
+
+The persistent mark indicates the message's status and it is saved.
+Each persistent mark indicates:
+
+`N'
+     It is new message.
+`n'
+     It is new message. It differs from `N' that message with `n' is
+     already cached.
+`U'
+     It is unread message.
+`u'
+     It is unread message. It differs from `U' that message with `u' is
+     already cached.
+`!'
+     It is message already read. It differs from message without mark
+     that message with `!' is not cached yet.
+`A'
+     It is already replied message.
+`a'
+     It is already replied message. It differs from `A' that message
+     with `a' is already cached.
+`F'
+     It is already forwarded message.
+`f'
+     It is already forwarded message. It differs from `F' that message
+     with `f' is already cached.
+`$'
+     It is a message with some global flag.  It is convenient to put
+     this mark on the messages to remember (If you want to remember to
+     write a reply for the message, for example) because this mark
+     remains after you exited Emacs.  Messages with the `$' mark can be
+     reviewed in the `'flag' folder even the message itself is deleted
+     in the actual folder. You can put global flag by typing `$' or `F'
+     key.
+
+`None'
+     If the message is read and cached (or local message),there are no
+     persistent mark.
+** how to read
+
+`SPC'
+     Proceed reading a message at the current cursor point.
+     (`wl-summary-read')
+
+`.'
+     Redisplay a message at the current cursor point with default
+     display type.  If this command is called with prefix argument,
+     reload and redisplay message regardless of the message cache.  If
+     this command is called with twice multiples `C-u' as `C-u C-u .',
+     reload and redisplay message with current display type regardless
+     of the message cache.  (`wl-summary-redisplay')
+
+`<'
+     Display the top message in the folder.  (`wl-summary-display-top')
+
+`>'
+     Display the bottom message in the folder.
+     (`wl-summary-display-bottom')
+
+`BS'
+`DEL'
+     Display the previous page of the message at the current cursor
+     point.  (`wl-summary-prev-page')
+
+`RET'
+     Display the next line of the message at the current cursor point.
+     Display the message at the current cursor point if it is not
+     displayed yet.  (`wl-summary-next-line-content') If prefix argument
+     is specified, message is scrolled up by one line.
+     (`wl-summary-prev-line-content') If prefix argument is numeric,
+     cursor is jumped to the message with specified number.
+
+`-'
+`M-RET'
+     Display the previous line of the message at the current cursor
+     point.  Display the message at the current cursor point if it is
+     not displayed yet.  (`wl-summary-prev-line-content')
+
+`/'
+     Toggle open or close the thread at the current cursor point.  With
+     prefix argument, open all children threads.
+     (`wl-thread-open-close')
+
+`['
+     Open all threads.  (`wl-thread-open-all')
+
+`]'
+     Close all threads.  (`wl-thread-close-all')
+
+`g'
+     Go to other folder.  (`wl-summary-goto-folder')
+
+`c'
+     Mark all messages in the folder as read.
+     (`wl-summary-mark-as-read-all')
+
+`a'
+     Prepare a draft for reply the message at the current cursor point.
+     (`wl-summary-reply')
+
+`A'
+     Prepare a draft for reply the message at the current cursor point.
+     (`wl-summary-reply-with-citation')
+
+`C'
+     If the message at current cursor point is your own netnews article,
+     cancel it.  (`wl-summary-cancel-message')
+
+`E'
+     Prepare a draft for re-editing the message at current cursor point.
+     If the message at current cursor point is your own netnews article,
+     a draft for `supersedes message' for the message is prepared.
+     (`wl-summary-reedit')
+
+`M-E'
+     If the message at current cursor point is a bounced message, a
+     draft for re-sending original message is prepared.
+     (`wl-summary-resend-bounced-mail')
+
+`f'
+     A draft for forwarding the message at current cursor point is
+     prepared.  (`wl-summary-forward')
+
+`$'
+     Put `important' flag on the message at current cursor point.  If
+     already flagged as `important', remove the flag.  If it is called
+     with prefix argument, ask global flag to put similarly to `F'.
+     (`wl-summary-mark-as-important')
+
+`F'
+     Put arbitrary global flag entered in the minibuffer.  If you use
+     Emacs 21 or later, you can specify multiple flags separated by `,'
+     simultaneously.  If it is called with prefix argument, remove
+     existent global flags.  (`wl-summary-set-flags')
+
+`y'
+`e'
+     Save the message at current cursor point.  (`wl-summary-save')
+
+`n'
+     Move cursor to the next message.  If message is marked with a
+     temporal mark in `wl-summary-skip-mark-list', cursor is not moved
+     to it.  In the offline mode, cursor is not moved to the messages
+     which are not cached yet.  (`wl-summary-next')
+
+`p'
+     Move cursor to the previous message.  If message is marked with a
+     temporal mark in `wl-summary-skip-mark-list', cursor is not moved
+     to it.  In the offline mode, cursor is not moved to the messages
+     which are not cached yet.  (`wl-summary-prev')
+
+`N'
+     Move cursor to the downward message which is unread or marked as
+     `$'.  In the offline mode, cursor is not moved to the messages
+     which are not cached yet.  If there are messages which have target
+     mark `*' in the summary, cursor is moved to the downward message
+     which have a target mark.  This behavior is changed according to
+     the value of `wl-summary-move-order'.  (`wl-summary-down')
+
+`P'
+     Move cursor to the upward message which is unread or marked as `$'.
+     In the offline mode, cursor is not moved to the messages which are
+     not cached yet.  If there are messages which have target mark `*'
+     in the summary, cursor is moved to the downward message which have
+     a target mark.  This behavior is changed according to the value of
+     `wl-summary-move-order'.  (`wl-summary-up')
+
+`w'
+     Prepare a new draft.  (`wl-summary-write')
+
+`W'
+     Prepare a new draft.  If the current folder is NNTP folder,
+     `Newsgroups:' field is completed.  If the current folder is mailing
+     list folder (refile destination), guess `To:' field and completed
+     (If `wl-subscribed-mailing-list' is valid list)
+     (`wl-summary-write-current-folder')
+
+`H'
+     Toggle display type between all and partial header fields and
+     redisplay the message at current cursor point.  If this command is
+     called with prefix argument, reload and redisplay message
+     regardless of the message cache.  If this command is called with
+     twice multiples `C-u' as `C-u C-u H', set default display type of
+     summary by current display type of header fields.
+     (`wl-summary-toggle-all-header')
+
+`M'
+     Toggle display type for MIME analysis and redisplay the message at
+     current cursor point.  A change is performed in the order set as
+     `wl-summary-display-mime-mode-list'.  If this command is called
+     with numeric prefix argument, it switch directly as follows.
+
+          1: Enable MIME analysis.
+          2: Enable MIME analysis only for header fields.
+          3: Disable MIME analysis.
+
+     If this command is called with twice multiples `C-u' as `C-u C-u
+     M', set default display type of summary by current display type of
+     MIME analysis.  (`wl-summary-toggle-mime')
+
+`C-c C-f'
+     Toggle header body narrowing of the message at current cursor
+     point.  (`wl-summary-toggle-header-narrowing')
+
+`B'
+     If the message at current cursor point has encapsulates multiple
+     messages using MIME, de-capsulate and extract them on the current
+     folder.  If it is invoked in non-writable folder or it is called
+     with prefix argument, it asks the destination folder.
+     (`wl-summary-burst')
+
+`@'
+     Append/change/delete the message's sender information to the
+     address book `~/.addresses' interactively.  If this command is
+     called with prefix argument, arbitrary address can be edited.
+     (`wl-summary-edit-petname')
+
+`Z'
+     Sync up address book status with `~/.addresses''s content.
+     (`wl-status-update')
+
+`|'
+     Pipe current message's content to the external process.
+     (`wl-summary-pipe-message')
+
+`#'
+     Print out current message's content.
+     It uses `ps-print' module in Emacs 20.x.
+     If you don't use color printer, you might want to set
+     `wl-ps-print-buffer-function' to `ps-print-buffer'.
+
+          (setq wl-ps-print-buffer-function 'ps-print-buffer)
+
+     (`wl-summary-print-message')
+
+`q'
+     Exit current folder.  (`wl-summary-exit')
+
+`j'
+     Jump cursor to the currently displayed message's window.
+     (`wl-summary-jump-to-current-message')
+
+`J'
+     Jump cursor to the other message.  (`wl-summary-jump-to-msg')
+
+`I'
+     Update summary status and prefetch all messages which have marks
+     included in the `wl-summary-incorporate-marks'.
+     (`wl-summary-incorporate')
+
+`M-j'
+     Jump cursor to the message which have specified `Message-Id:'.  If
+     `elmo-use-database' is non-nil, other folder is also searched.
+     (`wl-summary-jump-to-msg-by-message-id')
+
+`^'
+     Jump to parent message.  (`wl-summary-jump-to-parent-message')
+
+`!'
+     Mark as unread the message at current cursor point.
+     (`wl-summary-mark-as-unread')
+
+`s'
+     Synchronize summary view after prompting the update range.  You can
+     specify one of the follows.
+
+          all              Discard present msgdb and retrieve all informations.
+                           Do not retrieve killed messages.
+          all-entirely     Discard present msgdb and retrieve all informations.
+                           Retrieve killed messages, too.
+          update           Update the difference between informations in present
+                           msgdb and in current folder instance.
+                           Do not retrieve killed messages.
+          update-entirely  Update the difference between informations in present
+                           msgdb and in current folder instance.
+                           Retrieve killed messages, too.
+          rescan           Redisplay summary by rescanning present msgdb.
+          rescan-noscore   Redisplay summary by rescanning present msgdb.
+                           Display messages killed by score, too.
+          rescan-thread    Redisplay summary by rescanning present msgdb.
+                           Reconstruct thread, too.
+          cache-status     Sync the all marks with the real status of cache.
+          mark             Update marks.
+          no-sync          Do nothing.
+          first:NUM        Move to the filter folder(partial filter).
+          last:NUM         Move to the filter folder(partial filter).
+
+     (`wl-summary-sync')
+
+`S'
+     Sort summary order.  You can sort by `date', `from', `number',
+     `subject', `size' and `list-info'.  With prefix argument, sort
+     summary lines into descending order.  (`wl-summary-sort')
+
+`T'
+     Toggle the threading. The state will be preserved after exiting
+     Wanderlust. You can alter default state for newly created summary
+     by `wl-summary-default-view' or `wl-summary-default-view-alist'.
+     Threading status is displayed on the modeline.  `{S}' means
+     threading is off (Sequence) and `{T}' means threading is on
+     (Thread).  (`wl-summary-toggle-thread')
+
+`l'
+     Toggle displaying of folder window.
+     (`wl-summary-toggle-disp-folder')
+
+`v'
+     Toggle displaying of message window.
+     (`wl-summary-toggle-disp-msg')
+
+`V'
+     Move to the virtual folder (filter folder) with the condition
+     specified.  If called with prefix argument and current folder is
+     virtual, exit it.  (`wl-summary-virtual')
+
+`TAB'
+     Jump to the message which is displayed last.
+     (`wl-summary-goto-last-displayed-msg')
+
+`?'
+     Put `*' mark on the messages that satisfies the specified
+     condition.  If messages already have `*' mark, new `*' marks are
+     overridden.  If prefix argument is specified, current `*' marks are
+     removed and new `*' marks are appended.
+
+     (`wl-summary-pick')
+
+`R'
+     Mark as read the message at the current cursor point.
+     (`wl-summary-mark-as-read')
+
+`x'
+     Execute action for all temporary marks in the summary buffer.
+     (`wl-summary-exec')
+
+`*'
+     Put target mark on the message at the current cursor point.
+     (`wl-summary-target-mark-line') *Note Mark and Action::.
+
+`o'
+     Put refile mark on the message at the current cursor point.
+     (`wl-summary-refile') *Note Mark and Action::.
+
+`C-o'
+     Execute auto refile.  (`wl-summary-auto-refile')
+
+`O'
+     Put copy mark on the message at the current cursor point.
+     (`wl-summary-copy') *Note Mark and Action::.
+
+`M-o'
+     Put refile mark on the message at the current cursor point with the
+     destination previously specified.
+     (`wl-summary-refile-prev-destination')
+
+`d'
+     Put disposal mark on the message at the current cursor point.  The
+     result of disposal is controlled by `wl-dispose-folder-alist',
+     refiled to `wl-trash-folder' by default.  (`wl-summary-dispose')
+     *Note Mark and Action::.
+
+`D'
+     Put force deletion mark on the message at the current cursor point.
+     (`wl-summary-delete') *Note Mark and Action::.
+
+`i'
+     Put prefetch reservation mark on the message at the current cursor
+     point.  (`wl-summary-prefetch') *Note Mark and Action::.
+
+`~'
+     Put resend reservation mark on the message at the current cursor
+     point.  (`wl-summary-resend') *Note Mark and Action::.
+
+`u'
+     Unmark the temporal mark on the message at the current cursor
+     point.  (`wl-summary-unmark')
+
+`U'
+     Unmark all the temporal marks.  (`wl-summary-unmark-all')
+
+`r R'
+     Mark as read messages in the specified region.
+     (`wl-summary-mark-as-read-region')
+
+`r $'
+     Put `important' flag on messages in the specified region.  If
+     already flagged as `important', remove the flag.
+     (`wl-summary-mark-as-important-region')
+
+`r F'
+     Put arbitrary global flag entered in the minibuffer on messages in
+     specified region.  (`wl-summary-set-flags-region')
+
+`r !'
+     Mark as unread messages in the specified region.
+     (`wl-summary-mark-as-unread-region')
+
+`r x'
+     Execute action for each temporary marks on the messages in the
+     specified region.  (`wl-summary-exec-region')
+
+`r *'
+     Put target mark on the messages in the specified region.
+     (`wl-summary-target-mark-region') *Note Mark and Action::.
+
+`r o'
+     Put refile mark on the messages in the specified region.
+     (`wl-summary-refile-region') *Note Mark and Action::.
+
+`r O'
+     Put copy mark on the messages in the specified region.
+     (`wl-summary-copy-region') *Note Mark and Action::.
+
+`r d'
+     Put disposal mark on the messages in the specified region.
+     (`wl-summary-dispose-region') *Note Mark and Action::.
+
+`r D'
+     Put force deletion mark on the messages in the specified region.
+     (`wl-summary-delete-region') *Note Mark and Action::.
+
+`r i'
+     Put prefetch reservation mark on messages in the specified region.
+     (`wl-summary-prefetch-region') *Note Mark and Action::.
+
+`r u'
+     Delete temporal mark on the messages in the specified region.
+     (`wl-summary-unmark-region')
+
+`r y'
+     Save messages in the specified region.  (`wl-summary-save-region')
+
+`t R'
+     Mark as read messages which are the descendant of the current
+     thread.  With prefix argument, it affects on the all messages in
+     the thread tree.  (`wl-thread-mark-as-read')
+
+`t $'
+     Put `important' flag on the messages which are the descendant of
+     the current thread.  If already flagged as `important', remove the
+     flag.  With prefix argument, it affects on the all messages in the
+     thread tree.  (`wl-thread-mark-as-important')
+
+`t F'
+     Put arbitrary global flag entered in the minibuffer on the messages
+     which are the descendant of the current thread.  With prefix
+     argument, it affects on the all messages in the thread tree.
+     (`wl-thread-set-flags')
+
+`t !'
+     Mark as unread messages which are the descendant of the current
+     thread.  With prefix argument, it affects on the all messages in
+     the thread tree.  (`wl-thread-mark-as-unread')
+
+`t x'
+     Execute action for temporary marks on the messages which are the
+     descendant of the current thread.  With prefix argument, it affects
+     on the all messages in the thread tree.  (`wl-thread-exec')
+
+`t *'
+     Put target mark `*' on the messages which are the descendant of the
+     current thread.  With prefix argument, it affects on the all
+     messages in the thread tree.  (`wl-thread-target-mark') *Note Mark
+     and Action::.
+
+`t o'
+     Put refile mark on the messages which are the descendant of the
+     current thread.  With prefix argument, it affects on the all
+     messages in the thread tree.  (`wl-thread-refile') *Note Mark and
+     Action::.
+
+`t O'
+     Put copy mark on the messages which are the descendant of the
+     current thread.  With prefix argument, it affects on the all
+     messages in the thread tree.  (`wl-thread-copy') *Note Mark and
+     Action::.
+
+`t d'
+     Put disposal mark on the messages which are the descendant of the
+     current thread.  With prefix argument, it affects on the all
+     messages in the thread tree.  (`wl-thread-dispose') *Note Mark and
+     Action::.
+
+`t D'
+     Put force deletion mark on the messages which are the descendant of
+     the current thread.  (`wl-thread-delete') *Note Mark and Action::.
+
+`t i'
+     Put prefetch reservation mark on messages which are the descendant
+     of the current thread.  (`wl-thread-prefetch') *Note Mark and
+     Action::.
+
+`t u'
+     Unmark temporal mark on the messages which are the descendant of
+     the current thread. With prefix argument, it affects on the all
+     messages in the thread tree.  (`wl-thread-unmark')
+
+`t y'
+     Save messages which are the descendant of the current thread.  With
+     prefix argument, it affects on the all messages in the thread tree.
+     (`wl-thread-save')
+
+`m R'
+     Mark as read all messages which have target mark `*'.
+     (`wl-summary-target-mark-mark-as-read')
+
+`m $'
+     Put `important' flag on all messages which have target mark `*'.
+     If already flagged as `important', remove the flag.
+     (`wl-summary-target-mark-mark-as-important')
+
+`m F'
+     Put arbitrary global flag entered in the minibuffer on all messages
+     which have target mark `*'.  (`wl-summary-target-mark-set-flags')
+
+`m !'
+     Mark as unread all messages which have target mark `*'.
+     (`wl-summary-target-mark-mark-as-unread')
+
+`m o'
+     Put refile mark on the messages which have target mark `*'.
+     (`wl-summary-target-mark-refile') *Note Mark and Action::.
+
+`m O'
+     Put copy mark on the messages which have target mark `*'.
+     (`wl-summary-target-mark-copy') *Note Mark and Action::.
+
+`m d'
+     Put disposal mark on the messages which have target mark `*'.
+     (`wl-summary-target-mark-dispose') *Note Mark and Action::.
+
+`m D'
+     Put force deletion mark on the messages which have target mark `*'.
+     (`wl-summary-target-mark-delete') *Note Mark and Action::.
+
+`m i'
+     Put prefetch reservation mark on messages which have target mark
+     `*'.  (`wl-summary-target-mark-prefetch') *Note Mark and Action::.
+
+`m y'
+     Save messages which have target mark `*'.
+     (`wl-summary-target-mark-save')
+
+`m u'
+     Unmark all temporal marks.  (`wl-summary-delete-all-temp-marks')
+
+`m a'
+     Put target mark `*' on the all messages.
+     (`wl-summary-target-mark-all')
+
+`m t'
+     Put target mark `*' on the messages in the current thread.
+     (`wl-summary-target-mark-thread')
+
+`m r'
+     Put target mark `*' on the messages in the specified region.
+     (`wl-summary-target-mark-region')
+
+`m A'
+     Prepare a draft which cites all messages which have target mark
+     `*'.  (`wl-summary-target-mark-reply-with-citation')
+
+`m f'
+     Prepare a draft which forwards all messages which have target mark
+     `*'.  (`wl-summary-target-mark-forward')
+
+`m U'
+     Uudecode the messages which have target mark `*'.
+     (`wl-summary-target-mark-uudecode')
+
+`m ?'
+     Pick messages from the `*' marked messages.  That is, `*' marks on
+     the messages are remained if the specified condition is satisfied.
+     (`wl-summary-target-mark-pick')
+
+`m #'
+     Print out all messages which have target mark `*'.
+     (`wl-summary-target-mark-print')
+
+`m |'
+     Pipe content of each message with target mark `*' to some specified
+     external process.  (`wl-summary-target-mark-pipe')
+
+`M-t'
+     Toggle offline/online status of Wanderlust.  (`wl-toggle-plugged')
+
+`C-t'
+     Start Wanderlust's plug-status manager.  (`wl-plugged-change')
+
+`C-c C-o'
+     Move to the draft buffer if available.  If multiple draft buffer
+     exists, moved to one after another.  If prefix argument is
+     specified, load draft folder's message to the draft buffer and jump
+     to it.  (`wl-jump-to-draft-buffer')
+
+`M-w'
+     Save the message at the current cursor point.
+     (`wl-summary-save-current-message')
+
+`C-y'
+     Regard the message at the current cursor point as parent, connect
+     the message saved by `wl-summary-save-current-message' to the
+     thread.  (`wl-summary-yank-saved-message')
+
+`C-x C-s'
+     Save the current summary.  (`wl-summary-save-status')
+* message buffer
+
+`l'
+     Toggles display of Summary buffer.
+     (`wl-message-toggle-disp-summary')
+
+`Button-2'
+     Assumes `Message-ID:' at the mouse pointer, and shows the
+     corresponding message if found.
+     (`wl-message-refer-article-or-url')
+
+`Button-4 (upward movement of a wheel)'
+     Scrolls the message backwards.  When the top of the message is hit,
+     moves to the previous message.  (`wl-message-wheel-down')
+
+`Button-5 (downward movement of a wheel)'
+     Scrolls the message forward.  When the bottom of the message is
+     hit, moves to the next message.  (`wl-message-wheel-up')
+
+`D'
+     Delete the part under cursor. In fact it appends modified message
+     to the current folder then moves old one to trash folder. Therefore
+     the message number will be changed.
+     (`wl-message-delete-current-part')
+
+
+
+* essential
+'w' :: summary mode to open blank message
+'W' :: summary mode to reply
+C-c C-z :: safe draft and exit
+C-c C-c :: send
