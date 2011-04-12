@@ -1,7 +1,12 @@
-
+#+STARTUP: lognotedone
+#+SEQ_TODO: TODO STARTED WAITING DONE
 
 
 * TODO party <2011-04-16 Sat> 		
+  :CLOCK:
+  CLOCK: [2011-04-11 Mon 14:15]--[2011-04-11 Mon 14:15] =>  0:00
+  CLOCK: [2011-04-11 Mon 14:14]--[2011-04-11 Mon 14:14] =>  0:00
+  :END:
   2-2:45 offsite
 * TODO party <2011-04-17 Sun>		
   11-12 in gym
