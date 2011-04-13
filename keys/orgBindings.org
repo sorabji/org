@@ -1,5 +1,9 @@
 
 
+
+* basic org file manipulation 
+S-TAB collapses everything
+TAB toggles
 * links
 [[http://www.google.com][google]]
 web link: [[link][description] ] (no space)
@@ -22,71 +26,69 @@ term, C-c & will return mark to where it left.
 
     
 
-
 ** glossary terms:
 surround term with <<< >>> , followed by definition (first thing on line). C-c C-c on the term will make 
 all instances of that term in the file a link to the definition.  C-c C-o will follow the link to the 
 term, C-c & will return mark to where it left.
 
-* org file manipulation 
-S-TAB collapses everything
-TAB toggles
 
-** lists
-   - <tab> :: fold items just like headline levels
-   - M-<ret> :: insert new item at current level (in a term :: definition list, prompt for next term)
-   - M-S-<ret> :: insert new item w/ checkbox
-   - M-S-<up>/<down> :: move item (including subitems) up/down
-   - M-<left>/<right> :: decrease/increase indentation of an item, ignoring subitems
-   - M-S-<left>/<right> :: decrease/increase indentation of item, including subitems
-   - C-c C-c :: toggle state of checkbox
-   - C-c - :: cycle entire list level through different itemize/enumarate bullets 
 
-** tables
-   - basic table work
-     + <tab>/<ret>/C-c C-c :: re-aligns table
-     + |- :: horizontal separator line
-   - keys
-     - Creation/Conversion
-       + C-c | :: convert active region to table. tab/comma/whitespace separated
-     - Re-aligning/field motion
-       + C-c C-c :: re-align table w/o moving cursor
-       + <tab> :: re-align table, move to the next field.
-       + S-<tab> :: re-align, move to previous field.
-       + <ret> :: re-align, move down to next row.
-     - column/row editing
-       + M-<left>/<right> :: move current column left/right.
-       + M-S-<left> :: kill current column
-       + M-S-<right> :: insert new column to the left of the cursor position.
-       + M-<up>/<down> :: move current row up/down.
-       + M-S-<up> :: kill the current row/horizontal line.
-       + M-S-<down> :: insert new row above current row.
-       + C-c - :: insert horizontal line below current row.
-       + C-c <ret> :: insert horizontal line below current row, and move cursor into the row below that line.
-       + C-c ^ :: sort table lines in the region...posiition of point indicates the column to be used
-		  for sorting, range of lines is the range between the nearest horizontal separator lines,
-		  or the entire table.
-   [[http://orgmode.org/org.html#Tables][org-table manual]]
+* lists
+  - <tab> :: fold items just like headline levels
+  - M-<ret> :: insert new item at current level (in a term :: definition list, prompt for next term)
+  - M-S-<ret> :: insert new item w/ checkbox
+  - M-S-<up>/<down> :: move item (including subitems) up/down
+  - M-<left>/<right> :: decrease/increase indentation of an item, ignoring subitems
+  - M-S-<left>/<right> :: decrease/increase indentation of item, including subitems
+  - C-c C-c :: toggle state of checkbox
+  - C-c - :: cycle entire list level through different itemize/enumarate bullets 
+
+* tables
+  - basic table work
+    + <tab>/<ret>/C-c C-c :: re-aligns table
+    + |- :: horizontal separator line
+  - keys
+    - Creation/Conversion
+      + C-c | :: convert active region to table. tab/comma/whitespace separated
+    - Re-aligning/field motion
+      + C-c C-c :: re-align table w/o moving cursor
+      + <tab> :: re-align table, move to the next field.
+      + S-<tab> :: re-align, move to previous field.
+      + <ret> :: re-align, move down to next row.
+    - column/row editing
+      + M-<left>/<right> :: move current column left/right.
+      + M-S-<left> :: kill current column
+      + M-S-<right> :: insert new column to the left of the cursor position.
+      + M-<up>/<down> :: move current row up/down.
+      + M-S-<up> :: kill the current row/horizontal line.
+      + M-S-<down> :: insert new row above current row.
+      + C-c - :: insert horizontal line below current row.
+      + C-c <ret> :: insert horizontal line below current row, and move cursor into the row below that line.
+      + C-c ^ :: sort table lines in the region...posiition of point indicates the column to be used
+		 for sorting, range of lines is the range between the nearest horizontal separator lines,
+		 or the entire table.
+  [[http://orgmode.org/org.html#Tables][org-table manual]]
 
 
 
-   
-
-
-** todos
-   - M-S <ret> :: create a TODO
-   - C-c C-t :: rotate TODO state (unmarked, TODO, DONE)
-   - S-<right>/<left> :: select following/preceding TODO state, similar to cycling
-   - C-c / t :: view TODO items in a sparse tree. folds the buffer, but shows all
+* todos
+ - TODO keys
+   + M-S <ret> :: create a TODO
+   + C-c C-t :: rotate TODO state (unmarked, TODO, DONE)
+   + S-<right>/<left> :: select following/preceding TODO state, similar to cycling
+   + C-c / t :: view TODO items in a sparse tree. folds the buffer, but shows all
 		TODO items and the headings hierarchy above them.
-   - S-M-<ret> :: insert a new TODO entry below the current one.
-   - C-c a t :: shows global TODO list...collects TODO items from all agendad files 
+   + S-M-<ret> :: insert a new TODO entry below the current one.
+   + C-c a t :: shows global TODO list...collects TODO items from all agendad files 
 		into a single buffer (Agenda Views, Global TODO list for more information)
-   - AGENDA
-     + t :: mark a TODO as DONE
-     + <ret> :: jump to source file where TODO is located
 
-*** alternate TODO cycling
+
+
+- agenda keys
+  + t :: mark a TODO as DONE
+  + <ret> :: jump to source file where TODO is located
+		
+** alternate TODO cycling
     use different sets of TODO keywords in parallel...example:
 #+begin_src lisp    
   (setq org-todo-keywords
@@ -97,35 +99,43 @@ TAB toggles
     keywords should all be different... "|" separates 'working' from 'done' states, parenthesis
     letters are shortcuts that you will be prompted for after pressing C-c C-t
 
-*** priorities for TODO
-    *** TODO [#A] Write letter to bob
+** priorities for TODO
+   *** TODO [#A] Write letter to bob
 
-    1. three prioties supported (A,B,C)
-    2. keys
-       + C-c , :: set priority of the current headline (Press 'A', 'B', 'C', or <spc> 
-		  to remove the cookie.
-       + S-<up>/<down> :: increase/decrease priority of current headline
+   1. three prioties supported (A,B,C)
+   2. keys
+      + C-c , :: set priority of the current headline (Press 'A', 'B', 'C', or <spc> 
+		 to remove the cookie.
+      + S-<up>/<down> :: increase/decrease priority of current headline
 
-*** breaking tasks into subtasks
-    make a heading, then make subtasks beneath it...to keep track of progress of subtasks
-    add '[/]' or '[%]' anywhere in the headline...updates everytime TODO status of a child 
-    changes, or when pressing C-c C-c on the cookie example:
-**** Organize Party [33%]
-***** TODO Call People [1/2]
-****** TODO Peter
-****** DONE Sarah
-       CLOSED: [2011-04-12 Tue 21:12]
-***** TODO Buy Food
-***** DONE Talk to neighbor
+** breaking tasks into subtasks
+   make a heading, then make subtasks beneath it...to keep track of progress of subtasks
+   add '[/]' or '[%]' anywhere in the headline...updates everytime TODO status of a child 
+   changes, or when pressing C-c C-c on the cookie example:
+*** Organize Party [0%]
+**** TODO Call People [0/0]
+***** TODO Peter
+***** DONE Sarah
       CLOSED: [2011-04-12 Tue 21:12]
+**** TODO Buy Food
+**** DONE Talk to neighbor
+     CLOSED: [2011-04-12 Tue 21:12]
 
-** checkboxes
-   + C-c C-c :: toggle checkbox status
-   + M-S-<ret> :: insert new item w/ checkbox (only works if cursor is already in a plain
-		  list item)
+* checkboxes
+  + C-c C-c :: toggle checkbox status
+  + M-S-<ret> :: insert new item w/ checkbox (only works if cursor is already in a plain
+		 list item)
 
 
-** tags 
+- things to do [3/5]
+  - [X] write list
+  - [X] get food
+  - [X] PICK UP austin
+  - [ ] go home
+    - 
+      - [ ] 
+	- 
+* tags 
    - keys
      - inserting tags:
        + C-c C-q :: enter new tags for current headline.
@@ -139,7 +149,7 @@ TAB toggles
 search prompts for a match string which allows basic Boolean logic:
 1. '+boss+urgent-project1' finds (boss AND urgent) NOT project1
 2. 'kathy|sally' finds kathy OR sally
-*** org-tag-alist (global tag completion)
+** org-tag-alist (global tag completion)
 #+begin_src lisp
   (setq org-tag-alist
         '(("@work" . ?w)
@@ -148,25 +158,24 @@ search prompts for a match string which allows basic Boolean logic:
 #+end_src
 @blank is the tag, ?'key' is the shortcut for fast completion
    
-
-** properties
+* properties
 + C-c C-x p :: prompt for property and value (repeat as needed)
    properties are key value pairs...they look like this:
 + C-c C-c d :: remove a property from the current entry.
 
 by defining a property as :blank_ALL: (then listing values), only the values listed will be 
 allowed to be entered in subsequent entries further down the tree (save typos)
-*** Goldberg Variations
+** Goldberg Variations
+   (check file...properties are hidden from html export)
+   :PROPERTIES:
+   :NDisks_ALL: 1 2 3 4
+   :Ndisks:   4
+   :END:
+*** something else
     :PROPERTIES:
-    :NDisks_ALL: 1 2 3 4
     :END:
-**** something else
-     :PROPERTIES:
-     :END:
 
-     
-
-** timestamps
+* timestamps
     <2012-04-13 Fri 17:16> 
    - keys
      - inserting timestamps
@@ -190,5 +199,9 @@ allowed to be entered in subsequent entries further down the tree (save typos)
 			  in current file.
 	 - C-c C-c :: update dynamic block at point...cursor needs to be in the #+BEGIN line
 
-repeating events: repeats after interval of N days(d), weeks(w), months(m), or years(y)
+
+** repeating events
+repeats after interval of N days(d), weeks(w), months(m), or years(y) 
+
 <2011-04-12 Tue 12:30 +1w> repeats every week on tuesday at 12:30
+

@@ -1,0 +1,126 @@
+
+- view
+  - virtual table
+    - contains no data...what use?
+      1. security reasons
+	 - do not want to expose certain columns to certain users
+      2. application program
+	 - reduce data available
+	   main table
+           | EmployeeId | name | payrate |
+           |------------+------+---------|
+           | 1          | JOHN | 10      |
+           | 2          | mary | 15      |
+
+	   view table
+           | EmployeeId | name |
+           |------------+------|
+           |          1 | john |
+           |          2 | mary |
+
+    - example:
+      - create view authorTable (Fname, Lname) as ;; () renames columns in virtual table
+        select FirstName, LastName
+        from ab_author
+
+
+
+
+* php
+1) all variables start w/ '$'
+2) functions do not
+3) define your own function:
+  (pass by value)
+  #+begin_src php
+function concatString($string1,$string2){
+    $finishedString = $string1 . $string2;
+    return $finishedString;
+}
+$string1 = "seventeen";
+$string2 = "penguin";
+
+$combineString = concatString($string1,$string2);
+#+end_src
+  (pass by reference...& forces pass by reference)
+#+begin_src php
+function square(&$value){
+    $value = $value * $value;
+}
+$a = 4;
+square($a);
+#+end_src
+4) conditional:
+  (if/then/else)
+#+begin_src php
+$a = 2;
+$b = 3;
+if ($a == $b){
+    echo "same";
+}
+else{
+    echo "different";
+}
+#+end_src 
+  (switch)
+#+begin_src php
+
+$a = 2
+switch($a){
+    case 2:
+        echo "value 2";
+	break;
+    case 3:
+        echo "value 3";
+	break;
+    default:
+        echo "default";
+}
+#+end_src
+1) loops
+   1) through index array:
+      + foreach loop
+	- foreach($name as $eachname){
+	      echo "the value of $eachname is \n";
+	  }
+   2) through associative array:
+      + foreach loop
+	- foreach ($array as $key => $value){
+	      echo "$key holds $value <br> \n";
+	  }
+2) string:
+   1) defining:
+      1) with ' '
+      2) with " "
+      3) $book = <<< tag
+	 content
+	 content
+	 content
+	 tag; //tag opens and closes string
+   2) echo:
+      1) echo '$name';
+	 - gives $name
+      2) echo "$name";
+	 - gives value of $name
+      3) echo $name
+	 - gives value of $name
+      4) echo "this is the {$a}th element";
+	 - gives "this is the 5th element" //brace expansion
+   3) string functions:
+      - substr($string, start, lengthOfSubstring)
+3) arrays
+   1) define:
+      - $name = array('fred','joe','mary');
+   2) access:
+      - $name[0]
+   3) assign:
+      - $name[5] = "billy";
+   4) associative arrays
+      - $inventory = ("book" => 5.00, "table" => 7.00);
+      - $inventory['book'] = 5.00;
+
+
+
+
+
+ 
+
