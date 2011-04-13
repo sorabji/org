@@ -32,7 +32,6 @@ all instances of that term in the file a link to the definition.  C-c C-o will f
 term, C-c & will return mark to where it left.
 
 
-
 * lists
   - <tab> :: fold items just like headline levels
   - M-<ret> :: insert new item at current level (in a term :: definition list, prompt for next term)
@@ -68,7 +67,6 @@ term, C-c & will return mark to where it left.
 		 for sorting, range of lines is the range between the nearest horizontal separator lines,
 		 or the entire table.
   [[http://orgmode.org/org.html#Tables][org-table manual]]
-
 
 
 * todos
@@ -205,3 +203,193 @@ repeats after interval of N days(d), weeks(w), months(m), or years(y)
 
 <2011-04-12 Tue 12:30 +1w> repeats every week on tuesday at 12:30
 
+* capture
+#+begin_src lisp
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (define-key global-map "\C-cc" 'org-capture)
+#+end_src
+  aboves defines a default place for notes to be saved, and binds C-c c to capture
+  - keys
+    - C-c c :: start capture process
+    - C-c c-c :: after entering information to the capture buffer, returns you to where
+		 you were before started
+    - C-c C-W :: moves entry to a refile location
+    - C-c C-k :: abort capture process
+#+begin_src emacs-lisp
+  (setq org-capture-templates
+        '(("t" "Todo" entry (file+headline "!/org/gtd.org" "Tasks")
+           "* TODO %?\n %i\n %a")
+          ("j" "journal" entry (file+datetree "~/org/journal.org")
+           "* %?\nEntered on %U\n %i\n %a")))
+#+end_src
+  1) first string is key to reach the template
+  2) second is a short description
+  3) next is type of entry and defining target location for storing note
+  4) finally, template itself...%'char' fills in special info based on time/context.
+     - %a :: annotation, normally the link created with org-store-link
+     - %i :: initial content...the region when remember is called w/ C-u
+     - %t :: timestamp, date only
+     - %T :: timestamp, date+time
+     - %u, %U :: same as %t, %T, but inactive timestamps
+
+
+* refiling notes
+  - keys
+    - C-c C-w :: refile entry or region at point (offers possible locations
+		 for refiling the entry...item is filed below the target heading 
+		 as a subitem)
+    - C-u C-c C-w :: use the refil interface to jump to a heading.
+    - C-u C-u C-c C-w :: jump to the location where org-refile last moved a tree to.
+
+* archiving
+  - keys
+    - C-c c-x C-a :: archive current entry using command specified in the variable 
+		     org-archive-default-command.
+    - C-c C-x C-s OR C-c $ :: archive the subtree starting at point to location given by
+	 org-archive-location.
+
+* agenda
+  - keys
+    - C-c [ :: add current file to the list of agenda files.
+    - C-c ] :: remove current file from the list of agenda files.
+    - C-, :: cycle through agenda file list, visiting one file after the other.
+  - agenda dispatcher (after pressing C-c a)
+    - a :: calendar-like agenda
+    - t/T :: list of all TODO items
+    - m/M :: list of headlines matching a TAGS expression
+    - L :: timeline view for current buffer
+    - s :: list of entries selected by a boolean expression of keywords and/or
+	   regex that must/mustnot occur in the entry
+  - agenda buffer commands
+    - n :: next line
+    - p :: previous line
+    - <spc> :: display original location of the item in another window.
+    - <tab> :: go to the original location of the item in another window.
+    - <ret> :: go to original location of the item and delete other windows.
+    - o :: delete other windows
+    - d / w :: switch to day/week view
+    - f and b :: forward/backward in time to display the following/preceding
+		 org-agenda-current-span days...example, if display covers
+		 a week, switch to the following/previous week.
+    - . :: go to today.
+    - j :: prompt for a date and go there
+    - v l  :: toggle logbook mode
+    - r OR g :: recreate agenda buffer to reflect chcanges
+    - s :: save all org buffers in current emacs session
+    - / :: filter current agenda view w/ respect to a tag
+    - \ :: narrow the current agenda filter by an additional condition
+    - 0-9 :: digit argument
+    - t :: change the TODO state of the item in agenda and the org file
+    - C-k :: delete the current agenda item along w/ the entire subtree belonging
+	     to it in the original org file
+    - C-c C-w :: refile the entry at point
+    - C-c C-x C-a OR a :: archive subtree corresponding to the entry at point using
+	 default archiving command (org-archive-default-command)
+    - C-c C-x C-s OR $ :: archive subtree corresponding to the current headline
+    - C-c C-s :: schedule this item, w/ prefix arg remove the scheduling timestamp
+    - C-c C-d :: set deadling for item, w/ prefix arg remove the deadline
+    - S-<right> AND S-<left> :: change the timestamp associated w/ the current line by one day
+    - I :: start clock on current item
+    - O / X :: stop/cancel the previously started clock
+    - J :: jump to the running clock in another window.
+
+** custom agenda views
+#+begin_src emacs-lisp
+  (setq org-agenda-custom-commands
+        '(("w" todo "WAITING")
+          ("u" TAGS "+boss-urgent")
+          ("v" tags-todo "+boss-urgent")))
+#+end_src
+1) first string is key to press after C-c a
+2) second parameter is search type
+3) third is string/regex to be used for the matching
+based on above:
+  - C-c a w :: global search for TODO entries w/ 'WAITING' as the TODO keyword
+  - C-c a u :: global tags search for headlines marked ':boss:' but not ':urgent:'
+  - C-c a v :: same as above, but limiting the search to headlines that are also TODO items
+
+* markup for rich export
+
+** structural markup elements
+  
+    - title :: #+TITLE: this is the title of the document
+    - paragraphs :: separated by at least one empty line...to enforce a line break w/in
+		    a paragraph, use '\\' at the end of a line
+    - also...
+#+BEGIN_VERSE
+  Great clouds overhead
+  Tiny black birds rise and fall
+  Snow covers Emacs
+
+
+      -- AlexShroeder
+#+END_VERSE
+
+#+BEGIN_QUOTE
+Everything should be made as simple as possible,
+but not any simpler -- Albert Einstein
+#+END_QUOTE
+
+#+BEGIN_CENTER
+Everything should be made as simple as possible, \\
+but not any simpler
+#+END_CENTER
+    - emphasis and monospace *bold*, /italic/, _underlined_, =code=, ~verbatim~, and +strike-through+
+    - horizontal rule w/ a line consisting of only dashes (at least 5).
+    - lines starting w/ "#" in column/ zero are treated as comments and won't be exported...indented
+      line comment starts w/ '#+ ', subtrees starting w/ the word 'COMMENT' won't be exported, and
+      regions surrounded by '#+BEGIN_ COMMENT'...'#+END_COMMENT' won't be exported.
+    - C-c :: toggle the COMMENT keyword at the beginning of an entry.
+
+
+
+
+
+** tables
+#+CAPTION: this is the caption for the next table (or link)
+#+LABEL: tbl:basic-data
+| item | price  |
+|------+--------|
+| book | $35.00 |
+
+refer to the table w/ \ref{tab:basic-data}
+
+
+
+** literal examples
+#+BEGIN_EXAMPLE
+some example from a text file
+#+BEGIN_EXAMPLE
+
+simple example line can start w/ a colon following by a space:
+    : another example
+
+#+begin_src emacs-lisp
+  (defun org-xor (a b)
+    "exlusive or."
+    (if a (not b) b))
+#+end_src
+C-c ' enters and leaves special source code buffer
+
+include content from another file:
+#+include: "~/.emacs" src emacs-lisp
+(src,quote,example)
+
+
+* editing source code
+#+srcname: <name>
+#+begin_src <language> <switches> <header arguments>
+  <body>
+#+end_src
+#+results:
+
+
+C-c C-c to evaluate current block and insert results
+#+begin_src emacs-lisp
+: (+ 1 2 3 4)
+#+end_src
+
+#+results:
+: 10
+
+good lord, refer to org-babel if you need more...
