@@ -1,18 +1,4 @@
-* todo stuff
-create a TODO: M-(shift) RET
-mark a TODO as DONE: C-c C-t
-the global TODO list (agenda):  C-c a t 
-'t' marks an item as DONE, RET jumps to the 
-source file where the TODO is located.
 
-insert a timestamp with C-c . (that's a period)
-
-scheduling a task w/ agenda:
-move cursor to the line after the TODO item to be scheduled
-run org-schedule : C-c C-s 
-
-org-agenda : C-c a a (displays this weeks' scheduled items)
-'l' (lowercase L) turns on log display
 
 * links
 [[http://www.google.com][google]]
@@ -22,18 +8,187 @@ org-open-at-point : C-c C-o
 [[file:~/notes/test.org::*fruit][a file]]
 file link: open the file to be linked to in a new buffer 
 press C-c l to call org-store-link
-go to the file you want the link to appear in 
+[[*links][eh?]]go to the file you want the link to appear in 
 press C-c C-l 
 org-open-at-point : C-c C-o 
+
+** anchors:
+surround anchor with << >> , then link to anchor elsewhere in file with [[ ] ] (using same text as anchor)
+(no spaces) C-c C-o will follow the link to the 
+term, C-c & will return mark to where it left.
+*** example:
+    1) <<we will link to this line>> link 1: [[we will link to this line]]
+
+
+    
+
+
+** glossary terms:
+surround term with <<< >>> , followed by definition (first thing on line). C-c C-c on the term will make 
+all instances of that term in the file a link to the definition.  C-c C-o will follow the link to the 
+term, C-c & will return mark to where it left.
 
 * org file manipulation 
 S-TAB collapses everything
 TAB toggles
 
-* tables
+** lists
+   - <tab> :: fold items just like headline levels
+   - M-<ret> :: insert new item at current level (in a term :: definition list, prompt for next term)
+   - M-S-<ret> :: insert new item w/ checkbox
+   - M-S-<up>/<down> :: move item (including subitems) up/down
+   - M-<left>/<right> :: decrease/increase indentation of an item, ignoring subitems
+   - M-S-<left>/<right> :: decrease/increase indentation of item, including subitems
+   - C-c C-c :: toggle state of checkbox
+   - C-c - :: cycle entire list level through different itemize/enumarate bullets 
 
-  [[http://orgmode.org/org.html#Tables][manual]]
+** tables
+   - basic table work
+     + <tab>/<ret>/C-c C-c :: re-aligns table
+     + |- :: horizontal separator line
+   - keys
+     - Creation/Conversion
+       + C-c | :: convert active region to table. tab/comma/whitespace separated
+     - Re-aligning/field motion
+       + C-c C-c :: re-align table w/o moving cursor
+       + <tab> :: re-align table, move to the next field.
+       + S-<tab> :: re-align, move to previous field.
+       + <ret> :: re-align, move down to next row.
+     - column/row editing
+       + M-<left>/<right> :: move current column left/right.
+       + M-S-<left> :: kill current column
+       + M-S-<right> :: insert new column to the left of the cursor position.
+       + M-<up>/<down> :: move current row up/down.
+       + M-S-<up> :: kill the current row/horizontal line.
+       + M-S-<down> :: insert new row above current row.
+       + C-c - :: insert horizontal line below current row.
+       + C-c <ret> :: insert horizontal line below current row, and move cursor into the row below that line.
+       + C-c ^ :: sort table lines in the region...posiition of point indicates the column to be used
+		  for sorting, range of lines is the range between the nearest horizontal separator lines,
+		  or the entire table.
+   [[http://orgmode.org/org.html#Tables][org-table manual]]
 
 
 
-  
+   
+
+
+** todos
+   - M-S <ret> :: create a TODO
+   - C-c C-t :: rotate TODO state (unmarked, TODO, DONE)
+   - S-<right>/<left> :: select following/preceding TODO state, similar to cycling
+   - C-c / t :: view TODO items in a sparse tree. folds the buffer, but shows all
+		TODO items and the headings hierarchy above them.
+   - S-M-<ret> :: insert a new TODO entry below the current one.
+   - C-c a t :: shows global TODO list...collects TODO items from all agendad files 
+		into a single buffer (Agenda Views, Global TODO list for more information)
+   - AGENDA
+     + t :: mark a TODO as DONE
+     + <ret> :: jump to source file where TODO is located
+
+*** alternate TODO cycling
+    use different sets of TODO keywords in parallel...example:
+#+begin_src lisp    
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "|" "DONE(d)")
+          (sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
+          (sequence "|" "CANCELED(c)")))
+#+end_src
+    keywords should all be different... "|" separates 'working' from 'done' states, parenthesis
+    letters are shortcuts that you will be prompted for after pressing C-c C-t
+
+*** priorities for TODO
+    *** TODO [#A] Write letter to bob
+
+    1. three prioties supported (A,B,C)
+    2. keys
+       + C-c , :: set priority of the current headline (Press 'A', 'B', 'C', or <spc> 
+		  to remove the cookie.
+       + S-<up>/<down> :: increase/decrease priority of current headline
+
+*** breaking tasks into subtasks
+    make a heading, then make subtasks beneath it...to keep track of progress of subtasks
+    add '[/]' or '[%]' anywhere in the headline...updates everytime TODO status of a child 
+    changes, or when pressing C-c C-c on the cookie example:
+**** Organize Party [33%]
+***** TODO Call People [1/2]
+****** TODO Peter
+****** DONE Sarah
+       CLOSED: [2011-04-12 Tue 21:12]
+***** TODO Buy Food
+***** DONE Talk to neighbor
+      CLOSED: [2011-04-12 Tue 21:12]
+
+** checkboxes
+   + C-c C-c :: toggle checkbox status
+   + M-S-<ret> :: insert new item w/ checkbox (only works if cursor is already in a plain
+		  list item)
+
+
+** tags 
+   - keys
+     - inserting tags:
+       + C-c C-q :: enter new tags for current headline.
+       + C-c C-c :: when cursor is in a headline, does same as C-c C-q
+     - searching tags:
+       + C-c \ OR C-c / m :: create a sparse tree w/ all headlines matching a tags search
+	    (with C-u prefix argument, ignore headlines that are not a TODO line).
+       + C-c a m :: create a global list of tag matches from all agenda files
+       + C-c a M :: create a global list of tag matches from all agenda files, but check
+		    only TODO items and force checking subitems (org-tags-match-list-sublevels)
+search prompts for a match string which allows basic Boolean logic:
+1. '+boss+urgent-project1' finds (boss AND urgent) NOT project1
+2. 'kathy|sally' finds kathy OR sally
+*** org-tag-alist (global tag completion)
+#+begin_src lisp
+  (setq org-tag-alist
+        '(("@work" . ?w)
+          ("@home" . ?h)
+          ("@laptop" . ?l)))
+#+end_src
+@blank is the tag, ?'key' is the shortcut for fast completion
+   
+
+** properties
++ C-c C-x p :: prompt for property and value (repeat as needed)
+   properties are key value pairs...they look like this:
++ C-c C-c d :: remove a property from the current entry.
+
+by defining a property as :blank_ALL: (then listing values), only the values listed will be 
+allowed to be entered in subsequent entries further down the tree (save typos)
+*** Goldberg Variations
+    :PROPERTIES:
+    :NDisks_ALL: 1 2 3 4
+    :END:
+**** something else
+     :PROPERTIES:
+     :END:
+
+     
+
+** timestamps
+    <2012-04-13 Fri 17:16> 
+   - keys
+     - inserting timestamps
+       - C-c . :: prompt for a date and insert a corresponding timestamp (or modify timestamp
+		  at point)...use twice in succession for time range...prefix to add current time.
+       - C-c ! :: same as above, but inserts an inactive timestamp (does not affect agenda)
+       - S-<left>/<right> :: change date at cursor by one day
+       - S-<up>/<down> :: change the item under the cursor in a timestamp (year, month, day, hour
+			  minute)
+       - C-c C-d :: insert 'DEADLINE' keyword along w/ stamp in line following the headline
+       - C-c C-s :: insert 'SCHEDULED' keyword along w/ stamp in line following the headline
+     - clocking
+       - C-c c-x C-i :: start clock on current item (clock-in)...C-u prefix: select task
+			from a list of recently clocked tasks
+       - C-c C-x C-o :: stop the clock (clock-out)
+       - C-c C-x C-e :: update the effor estimate for the current clock task
+       - C-c C-x C-x :: cancel the current clock
+       - C-c C-x C-j :: jump to the entry that contains the currently running clock...C-u prefix:
+			select the target task from a list of recently clocked tasks
+	 - C-c C-x C-r :: insert a dynamic block containing clock report as an org-mode table 
+			  in current file.
+	 - C-c C-c :: update dynamic block at point...cursor needs to be in the #+BEGIN line
+
+repeating events: repeats after interval of N days(d), weeks(w), months(m), or years(y)
+<2011-04-12 Tue 12:30 +1w> repeats every week on tuesday at 12:30
