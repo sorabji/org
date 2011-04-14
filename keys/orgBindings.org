@@ -2,24 +2,24 @@
 
 
 * basic org file manipulation 
-S-TAB collapses everything
+S-TAB collapses everything\\
 TAB toggles
 * links
 [[http://www.google.com][google]]
-web link: [[link][description] ] (no space)
+web link: [[link][description] ] (no space)\\
 org-open-at-point : C-c C-o
 
 [[file:~/notes/test.org::*fruit][a file]]
-file link: open the file to be linked to in a new buffer 
-press C-c l to call org-store-link
-[[*links][eh?]]go to the file you want the link to appear in 
-press C-c C-l 
-org-open-at-point : C-c C-o 
+file link: open the file to be linked to in a new buffer \\
+press C-c l to call org-store-link\\
+[[*links][eh?]]go to the file you want the link to appear in \\
+press C-c C-l \\
+org-open-at-point : C-c C-o \\
 
 ** anchors:
-surround anchor with << >> , then link to anchor elsewhere in file with [[ ] ] (using same text as anchor)
-(no spaces) C-c C-o will follow the link to the 
-term, C-c & will return mark to where it left.
+surround anchor with << >> , then link to anchor elsewhere in file with [[ ] ] (using same text as anchor)\\
+(no spaces) C-c C-o will follow the link to the \\
+term, C-c & will return mark to where it left.\\
 *** example:
     1) <<we will link to this line>> link 1: [[we will link to this line]]
 
@@ -27,9 +27,9 @@ term, C-c & will return mark to where it left.
     
 
 ** glossary terms:
-surround term with <<< >>> , followed by definition (first thing on line). C-c C-c on the term will make 
-all instances of that term in the file a link to the definition.  C-c C-o will follow the link to the 
-term, C-c & will return mark to where it left.
+surround term with <<< >>> , followed by definition (first thing on line). C-c C-c on the term will make \\
+all instances of that term in the file a link to the definition.  C-c C-o will follow the link to the \\
+term, C-c & will return mark to where it left.\\
 
 
 * lists
@@ -107,9 +107,10 @@ term, C-c & will return mark to where it left.
       + S-<up>/<down> :: increase/decrease priority of current headline
 
 ** breaking tasks into subtasks
-   make a heading, then make subtasks beneath it...to keep track of progress of subtasks
-   add '[/]' or '[%]' anywhere in the headline...updates everytime TODO status of a child 
-   changes, or when pressing C-c C-c on the cookie example:
+   CLOSED: [2011-04-13 Wed 15:39]
+   make a heading, then make subtasks beneath it...to keep track of progress of subtasks\\
+   add '[/]' or '[%]' anywhere in the headline...updates everytime TODO status of a child \\
+   changes, or when pressing C-c C-c on the cookie example:\\
 *** Organize Party [0%]
 **** TODO Call People [0/0]
 ***** TODO Peter
@@ -125,14 +126,14 @@ term, C-c & will return mark to where it left.
 		 list item)
 
 
-- things to do [3/5]
+- things to do [4/5]
   - [X] write list
   - [X] get food
   - [X] PICK UP austin
-  - [ ] go home
-    - 
-      - [ ] 
-	- 
+  - [1/2] go home
+    - [X] 
+    - [ ] 
+      
 * tags 
    - keys
      - inserting tags:
@@ -144,9 +145,9 @@ term, C-c & will return mark to where it left.
        + C-c a m :: create a global list of tag matches from all agenda files
        + C-c a M :: create a global list of tag matches from all agenda files, but check
 		    only TODO items and force checking subitems (org-tags-match-list-sublevels)
-search prompts for a match string which allows basic Boolean logic:
-1. '+boss+urgent-project1' finds (boss AND urgent) NOT project1
-2. 'kathy|sally' finds kathy OR sally
+search prompts for a match string which allows basic Boolean logic:\\
+1. '+boss+urgent-project1' finds (boss AND urgent) NOT project1\\
+2. 'kathy|sally' finds kathy OR sally\\
 ** org-tag-alist (global tag completion)
 #+begin_src lisp
   (setq org-tag-alist
@@ -161,8 +162,8 @@ search prompts for a match string which allows basic Boolean logic:
    properties are key value pairs...they look like this:
 + C-c C-c d :: remove a property from the current entry.
 
-by defining a property as :blank_ALL: (then listing values), only the values listed will be 
-allowed to be entered in subsequent entries further down the tree (save typos)
+by defining a property as :blank_ALL: (then listing values), only the values listed will be \\
+allowed to be entered in subsequent entries further down the tree (save typos)\\
 ** Goldberg Variations
    (check file...properties are hidden from html export)
    :PROPERTIES:
@@ -199,9 +200,9 @@ allowed to be entered in subsequent entries further down the tree (save typos)
 
 
 ** repeating events
-repeats after interval of N days(d), weeks(w), months(m), or years(y) 
+repeats after interval of N days(d), weeks(w), months(m), or years(y) \\
 
-<2011-04-12 Tue 12:30 +1w> repeats every week on tuesday at 12:30
+<2011-04-12 Tue 12:30 +1w> repeats every week on tuesday at 12:30\\
 
 * capture
 #+begin_src lisp
@@ -300,10 +301,10 @@ repeats after interval of N days(d), weeks(w), months(m), or years(y)
           ("u" TAGS "+boss-urgent")
           ("v" tags-todo "+boss-urgent")))
 #+end_src
-1) first string is key to press after C-c a
-2) second parameter is search type
-3) third is string/regex to be used for the matching
-based on above:
+1) first string is key to press after C-c a\\
+2) second parameter is search type\\
+3) third is string/regex to be used for the matching\\
+based on above:\\
   - C-c a w :: global search for TODO entries w/ 'WAITING' as the TODO keyword
   - C-c a u :: global tags search for headlines marked ':boss:' but not ':urgent:'
   - C-c a v :: same as above, but limiting the search to headlines that are also TODO items
@@ -340,10 +341,6 @@ but not any simpler
       line comment starts w/ '#+ ', subtrees starting w/ the word 'COMMENT' won't be exported, and
       regions surrounded by '#+BEGIN_ COMMENT'...'#+END_COMMENT' won't be exported.
     - C-c :: toggle the COMMENT keyword at the beginning of an entry.
-
-
-
-
 
 ** tables
 #+CAPTION: this is the caption for the next table (or link)
@@ -386,10 +383,10 @@ include content from another file:
 
 C-c C-c to evaluate current block and insert results
 #+begin_src emacs-lisp
-: (+ 1 2 3 4)
+: (+ 1 8 3 4)
 #+end_src
 
 #+results:
-: 10
+: 16
 
 good lord, refer to org-babel if you need more...
