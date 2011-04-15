@@ -1,0 +1,7 @@
+
+* Notes
+** repl for javascript			    :programming:javascript:conkeror:
+
+   Source: [2011-04-15 Fri], [[http://conkeror.org/MozRepl][MozRepl - Conkeror]]
+
+   The MozRepl extension embeds into Conkeror a JavaScript repl accessible via TCP connection to a port listening on localhost, usually 4242. In some cases, it may be more convenient than M-: and in particular, it includes an Emacs Lisp package that provides an inferior JavaScript shell interface to Conkeror using MozRepl (more information here).
