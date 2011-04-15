@@ -275,7 +275,7 @@ repeats after interval of N days(d), weeks(w), months(m), or years(y) \\
     - . :: go to today.
     - j :: prompt for a date and go there
     - v l  :: toggle logbook mode
-    - r OR g :: recreate agenda buffer to reflect chcanges
+    - r OR g :: recreate agenda buffer to reflect changes
     - s :: save all org buffers in current emacs session
     - / :: filter current agenda view w/ respect to a tag
     - \ :: narrow the current agenda filter by an additional condition

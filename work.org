@@ -1,0 +1,9 @@
+* Tasks
+
+* work tasks
+** TODO party <2011-05-07 Sat 02:30>							   :maestros:
+      Title: LM Party In Gym
+      arive 2:30
+      play 3:00 - 3:30
+      When: Sat May 7 2:30pm – 3:30pm Pacific Time
+      Where: Gym
