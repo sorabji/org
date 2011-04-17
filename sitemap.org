@@ -23,3 +23,6 @@
    + [[file:gtd.org][gtd]]
    + [[file:journal.org][journal]]
    + [[file:notes.org][notes]]
+   + [[file:theindex.org][theindex]]
+   + [[file:work.org][work]]
+   + [[file:www.org][www]]

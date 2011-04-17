@@ -5,3 +5,19 @@
    Source: [2011-04-15 Fri], [[http://conkeror.org/MozRepl][MozRepl - Conkeror]]
 
    The MozRepl extension embeds into Conkeror a JavaScript repl accessible via TCP connection to a port listening on localhost, usually 4242. In some cases, it may be more convenient than M-: and in particular, it includes an Emacs Lisp package that provides an inferior JavaScript shell interface to Conkeror using MozRepl (more information here).
+** shakespear!							:programming:
+
+   Source: [2011-04-15 Fri], [[http://shakespearelang.sourceforge.net/report/shakespeare/shakespeare.html][The Shakespeare Programming Language]]
+
+   The Shakespeare Programming Language
+   
+   Karl Hasselström
+   Jon Åslund
+** some thing i found that was cool		     :maestros:emacs:project:
+
+   Source: [2011-04-15 Fri], [[http://www.waynesthisandthat.com/][This and That]]
+
+   THIS AND THAT
+   Wayne Schmidt's multi-topic site covering everything from kaleidoscopes to electric rocket engines
+   (This site is viewed best in Internet Explorer.)
+
