@@ -1,0 +1,18 @@
+
+* 2011
+** 2011-04 April
+*** 2011-04-18 Monday
+**** school is annoying
+school is annoying me a great deal right now...last semester was java 2 and uml.  java 2 was not all that bad...i learned that i don't really care for java.  icky language, too many libraries to remember...impossible to code without google open in a window next to you.  
+
+the uml class was absolute torture.  showed me everything i hate about programming...diagramming, picky useless rules, etc.  i failed that class through my own inability to just burrow down and do the shit work.  i thought i had enough points to pass the class without doing the final project...turns out i was off by about 5 points.  luckily i suppose, i got permission to submit the final project for a grade.  the downside of that is that i actually have to do the project now.  
+
+i've been putting it off, and putting it off.  there's just so many more things i can do w/ my time that are actually useful...such as learning and configuring emacs more, working on and configuring conkeror (a keyboard-driven web browser i came across), teaching myself lisp, c, javascript, php, working on the patient database for megan...really, anything is more useful than sitting down and hacking out a handful of diagrams.
+
+on to this semester...html/css and mysql/php.  the mysql/php class is a joke...i've learned some marginally useful things about database design and implementation, but the teacher hardly knows what she's doing.  she barely knows how to use a computer, which is not inspiring.  she might know databases (likely actually) but she does not know php.  refers to her notes just to write out function names, doesn't know about optional arguments they take...in short, i guess it's clear she doesn't actually *use* php.  perhaps she has passing experience with it, but i doubt she's ever *built* anything with it.  bah.
+
+the html/css class isn't much better.  besides the fact that i'm going to to school for programming, *not* web design (hence i could really care less about making a web page look pretty...my interest ends as soon as it's online and usable)...this teacher also doesn't really know what she's doing.  her examples constantly blow up on her, stuff doesn't look the way she thinks it ought, a css style is not applied, and so on.  
+
+i have much more respect for her than the database teacher though...she's a c++ programmer, and she marginally knows how to use a computer.  enough for complaining.
+
+Entered on [2011-04-18 Mon 17:36]

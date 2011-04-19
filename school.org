@@ -1,0 +1,22 @@
+* school notes
+** more advanced css 						   :html:css:
+   
+  [[file:~/org/school/html/04.05.2011.notes.org::*applying%20to%20specific%20attribute%20css][applying to specific attribute css]]
+** intro sql 						    :sql:programming:
+   
+  [[file:~/org/school/mysql/03.30.2011.mysqlnotes.org::*review][review]]
+** join table, group functions 				    :sql:programming:
+   
+  [[file:~/org/school/mysql/04.06.2011.mysqlnotes.org::*today's%20notes][today's notes]]
+** subqueries/nested queries 				    :sql:programming:
+   
+  [[file:~/org/school/mysql/04.11.2011.mysqlnotes.org::*subqueries/nested%20query][subqueries/nested query]]
+** virtual tables, intro php 				:sql:php:programming:
+   
+  [[file:~/org/school/mysql/04.13.2011.mysqlnotes.org]]
+** more advanced php, connect to db 			:php:sql:programming:
+   
+  [[file:~/org/school/mysql/04.18.2011.mysqlnotes.org::*php][php]]
+** basic css 							   :html:css:
+   
+  [[file:~/org/school/html/03.29.2011.notes.org::*tutorial3][tutorial3]]
