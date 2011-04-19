@@ -97,12 +97,6 @@ from ab_author
 inner join ab_wrote
 on ab_author.AuthorId = ab_wrote.AuthorId
 
-
-
-
-
-
-
 ** different types of joining
 
    inner join only shows matching rows

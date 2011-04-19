@@ -1,0 +1,78 @@
+* review
+
+** php
+   - two types of arrays
+     - indexed
+       1. $name = array ("mary", "fred");
+       2. $name[2] = "will";
+       3. foreach ($name as $x){
+	    echo $x;
+	  }
+     - associative
+       1. $inventory = array ("book" => 5.00, "pencil" => 1.00);
+       2. $inventory["book"]
+       3. foreach ($inventory as $thing => $price){
+	    echo "$thing is $price";
+	  }
+
+
+
+* php connecting to db
+  1. mysql_connect : connects to mysql server
+     - $mysqlconnection = mysql_connect("localhost", "username", "password");
+  2. mysql_select_db : selects the desired db.
+     - mysql_select_db("databasename", $mysqlconnection);
+  3. mysql_query : submits sql command
+     - $sql = "select * from inventory";
+     - $results = mysql_query($sql, $conn);
+  4. mysql_fetch_field : selects a column, characteristics of the column
+     - characteristics of the column:
+       1. max_length
+       2. name
+       3. primary_key
+       4. table
+       5. type
+     - $field = mysql_fetch_field($result);
+     - $field -> name
+     - get every column:
+       while ($field = mysql_fetch_field($result)){
+         echo $field -> name;
+       }
+  5. mysql_fetch_assoc : returns associative array of query
+     - example (echo everything from $result)
+       - while($row = mysql_fetch_assoc($result)){
+	   foreach($row as $key => $value){
+	     echo $value;
+	   }
+	 }
+
+
+* famous quotes db
+
+fq-author
+| author_id(pk) | name |
+|---------------+------|
+|               |      | 
+
+
+
+fq-quotes  
+| quote_id(pk) | quotetext | quotedate | author_id(fk) |
+|--------------+-----------+-----------+---------------|
+|              |           |           |               | 
+
+fq-category
+| category_id(pk) | name |
+|-----------------+------|
+|                 |      | 
+
+fq-quotecategory
+| quote_id(fk) | category_id(fk) |  quote_id and category_id together are pk
+|--------------+-----------------|
+|              |                 |
+  
+fq-quotecategory is bridging table between fq-quotes and fq-category
+fq-category 1 > M fq-quotecategory
+fq-quotes 1 > M fq-quotecategory
+fq-author 1 > M fq-quotes
+
