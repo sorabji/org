@@ -1,0 +1,34 @@
+label.blockLabel{
+   display: block;
+   position: relative;
+   margin: 12px 0px;
+}
+
+span {
+   color: red;
+}
+
+label.indentLabel {
+   margin-left: 5px;
+}
+
+#firstname, #lastname, #streetAddress {
+   width:25em;
+}
+
+#phone, #city {
+   width: 10em;
+}
+
+#state {
+   width:3em;
+}
+
+#zip {
+   width: 7em;
+}
+
+#addressOption {
+   width: 250px;
+   margin-left: 150px;
+}

@@ -1,0 +1,30 @@
+pg 362
+
+* forms
+** different control elements
+   - input boxes
+   - option buttons/radio buttons
+   - selection lists
+   - drop-down lists boxes
+   - check boxes
+   - text areas
+** creating a web form
+<form name="name" id="id">...</form>
+** creating a field set
+groups parts of form together
+legend adds a caption
+** input boxes
+<input type="type" name="name" id="id" />
+type is type of input, name and id attributes provide control's name and id
+  - button 
+  - checkbox
+  - file
+  - hidden
+  - image
+  - password
+  - radio
+  - reset
+  - submit
+  - text
+<label for="id">label</label>
+*** styling

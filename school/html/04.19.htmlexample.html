@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>4/19 html example</title>
+<link rel=StyleSheet href="04.19.htmlExample.css" type="text/css"/>
+</head>
+
+<body>
+<h1>4/19 html example</h1>
+<form name="donationform" id="donationform" action="file.jsp" method="post">
+<fieldset id="contact">
+  <fieldset id="addressOption">
+  <legend>address for </legend>
+
+  <label for="homeType">Home</label>
+<input type="radio" id="homeType" name="addressType" value="home"/>
+
+  <label for="busType">Business</label>
+<input type="radio" id="busType" name="addressType" value="business"/>
+</fieldset>
+<legend>Contact Information</legend>
+  <label for="firstname" class="blockLabel">
+    first name<span>*</span>
+<input type="text" id="firstname" name="firstname" />
+</label>
+  
+  <label for="lastname" class="blockLabel">
+    last name<span>*</span>
+<input type="text" id="lastname" name="lastname" />
+</label>
+  
+
+  <label class="blockLabel">
+    Phone<span>*</span>
+<input type="text" id="phone" name="phone" />
+</label>
+  
+  <label class="blockLabel">
+    Street Address<span>*</span>
+<input type="text" id="streetAddress" name="streetAddress" />
+</label>
+  
+
+  <label class="indentLabel">
+    City<span>*</span>
+<input type="text" id="city" name="city" value="San Diego"/>
+</label>
+  
+
+  <label class="indentLabel">
+    State<span>*</span>
+<input type="text" ipd="state" name="state" maxlength="2" value="CA"/>
+</label>
+  
+
+  <label class="indentLabel">
+    zip<span>*</span>
+<input type="text" id="zip" name="zip" maxlength="10"/>
+</label>
+  
+
+</fieldset>
+
+
+<fieldset id="donation">
+<legend>Donation Information</legend>
+  <select id="party" name="party" multiple="multiple">
+    <option value="dem">Democrat</option>
+    <option value="rep">Republican</option>
+    <option value="ind">Independent</option>
+    
+  </select>
+
+  <select id="candidate" name="candidate" multiple="multiple">
+    <optgroup label="Democrat">
+      <option>Tim Harris</option>
+      <option>Gary</option>
+      <option>Kate</option>
+    </optgroup>
+	  
+    <optgroup label="Republican">
+      <option>Barbara</option>
+      <option>Bob</option>
+      <option>John</option>
+    </optgroup>
+  </select>
+</fieldset>
+
+<fieldset id="feedback">
+<legend>Feedback</legend>
+  <label>
+  <input type="checkbox" id="volunteer" name="volunteer" />
+  I'm interested in volunteering at the Lighthouse
+  </label>
+
+  <textarea name="comments" id="comments" row="5" cols="50">
+  </textarea>
+
+  
+</fieldset>
+  <input type="button" id="button" name="button" value="New Custom Button" />
+  <input type="submit" id="submit" name="submit" value="submit donation"/>
+  <input type="reset" id="reset" name="reset" />
+
+  <button name="home" id="home" type="button">
+    <img src="path/to/button/image" alt="no image" style="vertical-align: middle"/>
+    <span style="color:blue:>
+    Return to Home Page
+  </span>
+  </button>
+
+  <input type="file" id="fileName" name="fileName"/>
+  <input type="hidden" id="hidden" name="hidden" value="donations@lighthouse.org"/>
+</form>
+
+
+
+<hr>
+<address></address>
+<!-- hhmts start -->
+Last modified: Tue Apr 19 10:28:14 PDT 2011
+<!-- hhmts end -->
+</body> </html>
