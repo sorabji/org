@@ -1,0 +1,53 @@
+* review
+#+begin_src php
+  $result=mysql_query("select author_id,name from fq_author",$connection);
+#+end_src
+- all column names
+#+begin_src php
+  while($field=mysql_fetch_field($result)){
+    echo $field -> name;
+  }
+#+end_src
+- 1st row into an array
+#+begin_src php
+  while($row=mysql_fetch_assoc($result)){
+    foreach($row as $key => $value){
+      echo "$key => $value";
+    }
+  }
+#+end_src
+
+
+* new stuff
+** get method
+deleteauthor.php?aid=$aid
+
+passes the value of $aid to the deleteauthor.php page
+deleteauthor.php creates (be default) an associative array called $_GET['aid']
+#+begin_src php
+  echo "<a href='deleteauthor.php?aid=$aid'>Delete</a></li>";
+#+end_src
+
+** deleting
+1. delete quotecategory (delete grandchildren first)
+   - delete from fq_quotecategory,fq_quotecategory where fq_quote.author_id=$aid 
+   and fq_quote.quote_id=fq_quotecategory.quote_id;
+2. delete quote (delete children next)
+   - delete from fq_quotes where author_id=$aid;
+3. author (finally, delete parents)
+   - delete from fq_author where author_id=$aid;
+
+** newauthor.php
+#+begin_src html
+  ...
+  <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+  <p>Enter the new author:</p>
+  <label>Name: <input type="text" name="aname" /></label><br />
+  <label>Email: <input type="text" name="email" /></label><br />
+  <input type="submit" value="SUBMIT" />
+  </form>
+#+end_src
+
+useless damn day
+
+

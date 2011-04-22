@@ -35,17 +35,20 @@
      - $field = mysql_fetch_field($result);
      - $field -> name
      - get every column:
+#+begin_src php
        while ($field = mysql_fetch_field($result)){
          echo $field -> name;
        }
+#+end_src
   5. mysql_fetch_assoc : returns associative array of query
      - example (echo everything from $result)
-       - while($row = mysql_fetch_assoc($result)){
-	   foreach($row as $key => $value){
-	     echo $value;
-	   }
-	 }
-
+#+begin_src php
+while($row = mysql_fetch_assoc($result)){
+  foreach($row as $key => $value){
+    echo $value;
+  }
+}
+#+end_src
 
 * famous quotes db
 
