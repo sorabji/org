@@ -1,0 +1,57 @@
+* review 							    :php:sql:
+  - how to read data from mysql using php
+    1. connect to server
+       - $connection=mysql_connect(localhost,username,pwd)
+    2. select db
+       - mysql_select_db(db_name,connection)
+    3. sql command
+       - $result=mysql_query(query,connection)
+    4. if read:
+       - mysql_fetch_array($result) : fetches one row at a time as associative array (also access by index)
+       - mysql_fetch_assoc($result) : fetches one row at a time as associative array
+    5. pass data through anchor:
+       - <a href="blah.php?variable=$value&variable=$value"> (use submitform parameter?)
+    6. access every row:
+       - while (mysql_fetch_array($result)){}
+    7. access every element of every row:
+#+begin_src php
+  while (mysql_fetch_array($result)){
+    foreach ($associative_array as $key => $value){
+      echo "$key = $value";
+    }
+  }
+#+end_src
+* 4.25 notes 							    :php:sql:
+  - delete from fq_quote_category where category_id = []
+  - delete from fq_category where category_id = []
+  - have html form submit to itself:
+#+begin_src html
+  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+#+end_src
+
+* 4.27 notes 							    :php:sql:
+** search engine  
+refer to student manual pg. 96-97
+
+this class is slow..............
+
+* project 4&5 						    :project:php:sql:
+
+  alpine adventures database
+  due 5/18/2011 11:00 a.m.
+  email url of website to ckoon@coleman.edu
+** customers.php
+   link to addcustomer.php
+*** select box
+    1. populate w/ all customers currently in the db
+    2. selectbox links to managecustomers.php
+    3. allow to delete (deletecustomer.php)
+    4. edit (editcustomer.php)
+    5. add (addcustomer.php)    
+       
+
+
+
+
+
+

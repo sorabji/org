@@ -31,3 +31,18 @@
    arrive at 1:15 pm
    play from 2:00 - 2:45pm
    [[wl:%25inbox#7B8BB277422E9247AF0B0B2BD09976F705724A15@KVNY-EX.KIDVILLENY.LOCAL][Email from Annemarie Gill: Address for mobile party on Sa]]
+** TODO project 4 and 5					    :project:php:sql:
+*** project 4&5 					    :project:php:sql:
+   
+     alpine adventures database
+     due 5/18/2011 11:00 a.m.
+     email url of website to ckoon@coleman.edu
+**** customers.php
+      link to addcustomer.php
+***** select box
+       1. populate w/ all customers currently in the db
+       2. selectbox links to managecustomers.php
+       3. allow to delete (deletecustomer.php)
+       4. edit (editcustomer.php)
+       5. add (addcustomer.php)    
+   [[file:~/org/school/mysql/04.25-27.2011.mysqlnotes.org::*%20project%204&5%20:project:php:sql:%0A%0A%20alpine%20adventures%20database%0A%20due%205/18/2011%2011:00%20a.m.%0A%20email%20url%20of%20website%20to%20ckoon@coleman.edu%0A**%20customers.php%0A%20link%20to%20addcustomer.php%0A***%20select%20box%0A%201.%20populate%20w/%20all%20customers%20currently%20in%20the%20db%0A%202.%20selectbox%20links%20to%20managecustomers.php%0A%203.%20allow%20to%20delete%20(deletecustomer.php)%0A%204.%20edit%20(editcustomer.php)%0A%205.%20add%20(addcustomer.php)][select box]]
