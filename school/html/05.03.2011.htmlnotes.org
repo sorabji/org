@@ -1,0 +1,12 @@
+* name collision
+  - namespace is a defined collection of attribute/element names
+  - in a namespace, all names are unique.
+  - namespaces must be declared before they are used
+  - elements from different XML vocabs use same name w/in a compound document.
+  - not a problem if you don't care about validation...
+  - name collision will keep a document from being validated.
+** declaring a namespace
+   - xmlns:mod=URI
+<prefix:element>
+  content
+</prefix:element>
