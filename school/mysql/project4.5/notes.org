@@ -1,0 +1,82 @@
+* final project details 
+  alpine adventures database
+  due 5/18/2011 11:00 a.m.
+  email url of website to ckoon@coleman.edu
+** customers.php [2/2]
+   - [X] select box
+     - populated w/ all customers in db
+     - show customer's names in box, value = cust_id
+     - submit button (links to manageCustomer.php, passing cust_id)
+   - [X] standard link to addCustomer.php
+** manageCustomer.php [4/4]
+   - [X] spit out all customer info
+     - select * from customer where cust_id='$cust_id';
+   - [X] make a link (button?) to deleteCustomer.php (pass cust_id)
+     - javascript dialog ("are you sure?")
+   - [X] make a link (button?) to editCustomer.php (pass cust_id)
+   - [X] standard link to addCustomer.php
+** addCustomer.php [4/4]
+   - [X] if ($_POST['submit']=='submit'):
+     - [X] validate 
+     - [X] process form (*CHECK FOR DUPLICATES????*)
+       - (insert into customer (col1,col2,etc) values(value1,value2,etc))
+     - [X] echo "customer added!" or some such nonsense
+     - [X] standard link to addCustomer.php ("add another customer?")
+     - [X] standard link to customers.php ("back to customer home")
+   - [X] else:
+     - table: (are only last and first required? cust_id is auto_increment)
+       - last
+       - first
+       - mi
+       - address
+       - city
+       - state
+       - zip
+       - phone
+       - email
+   - [X] submit button links to itself to process form
+   - [X] standard link to customers.php
+** deleteCustomer.php [6/6]
+   - [X] delete corresponding orders from orderline
+     - delete from orderline
+       where order_id= any
+       (select order_id from orders
+       where cust_id='$cust_id)
+   - [X] delete the orders in orders table
+     - delete from orders where cust_id='$cust_id
+   - [X] delete the customer
+     - delete from customer where cust_id='$cust_id'
+   - [X] if all went well, echo "Customer deleted!"
+   - [X] standard link back to customers.php
+   - [X] standard link to addCustomer.php
+
+** editCustomer.php [0/2]
+   - [ ] standard link back to customers.php
+   - [ ] if ($_POST['submit']=='submit'):
+     - [ ] validate data
+     - [ ] insert into db
+       - insert into customer (col1,col2,etc) values(value1,value2,etc)
+     - [ ] echo "customer information changed successfully!"
+   - [ ] else:
+     - [ ] get customer info from db (got cust_id from manageCustomer.php)
+     - [ ] populate table/form w/ info
+       - last
+       - first
+       - mi
+       - address
+       - city
+       - state
+       - zip
+       - phone
+       - email
+       - submit button (links to self)
+	 - <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+* questions
+** general
+   1. check for duplicates?
+** manageCustomer.php
+   should i display cust_id?  are users supposed to be able to set this value
+ manually?  it's auto_increment, so it doesn't make sense to allow it to be
+manipulated.
+
+
