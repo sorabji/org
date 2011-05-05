@@ -1,0 +1,35 @@
+* grant command
+grant [permissions] [on table] to user@host [with grant option]
+- permissions
+  1. all
+  2. select
+  3. insert
+  4. update
+  5. delete
+  6. usage (no perms, just usage)
+     - perms that don't require a table name
+       1. create table
+       2. alter table
+       3. drop table
+- on table
+  1. database.tablename (*.*)
+
+revoke [perms] [on table] from user@host
+revoke grant option on music.* from 'taylor'@'localhost';
+
+* hierarchy
+- global :: all databases *.*
+- database :: database.*
+- table :: database.tablename
+- column :: (artis_id) on music.artist
+
+* change root password
+1. stop mysql (stop mysql server)
+2. mysqld --skip-grant-tables (lets you log in w/o user or pwd)
+3. mysql (log in)
+4. flush privileges (read all data in mysql tables)
+5. reset pwd: set password for 'root'@'localhost' = password('newpwd');
+6. flush privileges
+
+
+
