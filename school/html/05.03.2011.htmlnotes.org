@@ -10,3 +10,51 @@
 <prefix:element>
   content
 </prefix:element>
+
+
+* creating a valid document
+  - doctype
+  - title
+  - desc
+  - root element
+    - elements
+    - attributes
+
+** syntax
+   - internal subset
+     <!DOCTYPE root [statements] >
+   - external
+     - <!DOCTYPE root system "uri" [internal declarations] >
+       or
+     - <!DOCTYPE root public "id" "uri" [internal declarations] >
+     - <!ELEMENT element content-model>
+     - <!ATTLIST element attribute1 type1 default1
+                       attribute2 type2 default2 ... >
+       - enumeration
+	 - customer custType (school|home|business) #IMPLIED>
+       - token
+	 - customer custID ID #REQUIRED
+	 - order orderBy IDREF #REQUIRED
+     - <!ENTITY entity "value"> :: content entities
+       - <!ENTITY MBL25 ("Monarch Butterfly, 6-12 larvae")>
+	 - <item>&MBL25</item> :: interpreted as <item>Monarch Butterfly, 6-12 larvae </item>
+     - <!ENTITY % entity "value"> :: parameter entities
+       - <!ENTITY % books SYSTEM "books.dtd"> later in the file... %books; (copies content of books.dtd here)
+     - <!NOTATION jpeg SYSTEM "paint.exe">
+     - <!ENTITY entity SYSTEM "value">
+       - <!ENTITY BF100PIMG SYSTEM "bf100p.jpg" NDATA jpeg> :: jpeg will call up paint.exe
+
+
+     - ? :: allow zero or one of the item
+     - + :: one or more of item
+     - * :: zero or more
+    
+*** examples
+    - elements
+      - <!ELEMENT customer (phone)> :: phone is mandatory child element
+      - <!ELEMENT customer (name,phone,email)>  :: number of children must match
+      - <!ELEMENT customer (name | company)> :: name OR company
+      - <!ELEMENT customers (customer+)> :: one or more customer elements placed w/in customers
+      - <!ELEMENT order (item,date)+> :: item,date pairs, one or more
+    - attributes
+      - 

@@ -1,0 +1,37 @@
+* today's notes
+** transactions
+  - Transaction :: big task
+  - rollback :: scrap all tasks related to a transaction
+  - commit :: save changes (when transaction is successful)
+
+only INNODB supports transaction and locking
+by default, autocommit is ON
+*** example
+set autocommit = 0; // turn off autocommit
+...mysql statements... // do your stuff
+commit; // commit your changes to the db
+or...
+rollback; // throw away changes
+
+** locking
+types of locks:
+   - read lock :: others can read but not write
+   - write lock :: others cannot read or write
+
+levels of lock:
+   1. table level
+   2. row level
+
+*** example
+set autocommit = 0; // turn off autocommit
+begin transaction; // start a transaction
+lock tables tablename write (or read); // lock table 
+...statements...
+commit; // commit changes
+unlock tables; // unlock tables
+
+row level write lock:
+  select * from tablename where column=value for update;
+
+row level read lock:
+  select * from tablename where column=value lock in share mode;
