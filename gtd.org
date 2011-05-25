@@ -46,3 +46,4 @@
        4. edit (editcustomer.php)
        5. add (addcustomer.php)    
    [[file:~/org/school/mysql/04.25-27.2011.mysqlnotes.org::*%20project%204&5%20:project:php:sql:%0A%0A%20alpine%20adventures%20database%0A%20due%205/18/2011%2011:00%20a.m.%0A%20email%20url%20of%20website%20to%20ckoon@coleman.edu%0A**%20customers.php%0A%20link%20to%20addcustomer.php%0A***%20select%20box%0A%201.%20populate%20w/%20all%20customers%20currently%20in%20the%20db%0A%202.%20selectbox%20links%20to%20managecustomers.php%0A%203.%20allow%20to%20delete%20(deletecustomer.php)%0A%204.%20edit%20(editcustomer.php)%0A%205.%20add%20(addcustomer.php)][select box]]
+this asdjfskj thsth
