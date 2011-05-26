@@ -1,0 +1,41 @@
+* course/instructor info
+c275
+
+Robert Rapant 
+rrapant@coleman.edu
+619-248-6836
+send him your email address
+
+
+* notes
+** struct
+struct person {
+  int age;
+  char * name; //string
+}
+
+struct person test;
+test.age;
+
+c++ class is a struct w/ methods/member functions
+** enums
+   enum daysOfWeek{ // assigns Monday=0, Tuesday=1, etc...integers
+     Monday,
+     Tuesday,
+     ...
+   }
+** pointers
+   
+** primitive datatypes
+   - char c; // 1 byte -128 ... 127
+   - unsigned char uc; // 1 byte 0 ... 255
+   - short s; // 2 bytes -32768 ... 32767
+blash
+   
+** practice programs
+   - accept 3 ints for input
+   - print largest of three values
+   
+
+** homework
+use limits.h
