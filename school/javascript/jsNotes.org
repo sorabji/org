@@ -1,0 +1,45 @@
+* 5/31 
+** defining functions
+function funcName(a,b,c){
+  return a+b+c;
+}
+** events
+   - abort :: loading of an image is interrupted
+   - blur :: element becomes inactive
+   - click :: user clicks element
+   - change :: value of element changes
+   - error :: error occurs when document/image is loaded
+   - focus :: alament becomes active
+   - load :: document/image loads
+   - mouseout :: mouse moves off element
+   - mouseover :: mouse moves over an element
+   - reset :: form's fields reset to default
+   - select :: user selects a field in a form
+   - submit :: user submits a form
+
+
+    
+
+** javascript switch
+switch(varName){
+  case "value":
+    this;
+    that;
+    break;
+  case "value":
+    ...
+    ...
+    break;
+  default:
+}
+
+** browser object model
+   - client-side model
+   - hierarchy of objects
+*** objects
+    - window
+      - location
+      - navigator
+      - screen
+      - document
+    
