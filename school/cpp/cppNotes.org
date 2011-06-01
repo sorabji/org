@@ -36,6 +36,14 @@ blash
    - accept 3 ints for input
    - print largest of three values
    
-
 ** homework
-use limits.h
+Shape *shapes[3];
+loop through, print out area of each shape
+3 classes inherit from 'shape'
+1. circle
+2. triangle
+3. rectangle
+
+** exceptions
+   www.cplusplus.com
+
