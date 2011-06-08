@@ -1,0 +1,23 @@
+* writer's suite
+
+** what does publish mean?
+   - post/publish to the various wordpress blogs via rpc
+   - or approve and store a copy on the writing center (manually posted to the various blogs)
+
+** what will the project encompass
+   - basic wordpress dashboard
+   - support multiple users
+   - support multiple blogs
+   - have available list of topics
+   - have value of article
+   - payment tracking (ie, "ipad 2 review" $5-10 bucks...writer logs in, writes/submits for that assignment)
+   - lock on the offers
+     - joe 'checks out' the "ipad 2 review", has 24 hours to submit his article
+     - during those 24 hours, "ipad 2 review" is unavailable to anyone else
+     - after 24 hours, lock released, open again
+
+** plan of attack
+   - build basic posting interface
+     - post to various wordpres blogs from one central location
+   - augment with various user portions
+   - and go...
