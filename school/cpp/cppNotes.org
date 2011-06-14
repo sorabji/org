@@ -68,3 +68,6 @@ int main()
 }
    
 at compile time, all instances of 'T' are replaced w/ the proper datatypes
+** linked lists
+
+
