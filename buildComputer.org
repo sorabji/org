@@ -1,0 +1,15 @@
+* computer build
+
+** mobo
+
+** cpu
+
+** psu
+
+** case
+   1. http://www.newegg.com/Product/Product.aspx?Item=N82E16811112154
+      - recommended by chase
+** graphics
+
+** sound
+
